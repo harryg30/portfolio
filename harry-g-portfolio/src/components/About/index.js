@@ -64,7 +64,7 @@ const About = () => {
           Software Developer Intern | IBM | 2019 – 2020
           </b>
           <p align="LEFT">
-          Demonstrated continued success as a member of an agile team during the end-to-end completion of multiple development project lifecycles..
+          Demonstrated continued success as a member of an agile team during the end-to-end completion of multiple development project lifecycles.
           </p>
           <p>     
             <ul>
@@ -72,8 +72,43 @@ const About = () => {
               <li>Drove accurate back-end data by scheduling AirFlow jobs and maintaining reporting infrastructure. </li>
             </ul> 
           </p>
-     
-     
+          <b align="LEFT">
+          ServiceNow Developer Intern | Integration Partners LLC | 2018 – 2018
+          </b>
+          <p align="LEFT">
+          Spearheaded the development of new ServiceNow dashboards designed to close gaps and increase the performance of sales and IT team workflows.
+          </p>
+          <h1>
+            <AnimatedLetters
+              letterClass={letterClass}
+              strArray={['S', 'k', 'i', 'l', 'l', 's']}
+              idx={15}
+            />
+          </h1>
+          <p>
+          JavaScript (React) | Python (Flask) | Java | Hibernate | SQL | Scala | RESTful APIs | TypeScript | Spark | MongoDB | HDFS | Git | Jenkins | Docker | Jira | CI/CD | Pip | npm | UX/UI | Airflow | HTML | CSS | Apache | PostMan | 
+          </p>
+          <h1>
+            <AnimatedLetters
+              letterClass={letterClass}
+              strArray={['E', 'd', 'u', 'c', 'a', 't', 'i', 'o', 'n']}
+              idx={15}
+            />
+          </h1>
+          <b>Bachelor of Science in Computer Science| Wentworth Institute of Technology, Boston, MA, 2016-2020</b>
+          <p>
+            Projects     
+            <ul>
+              <li>
+                <p>Wikipedia Article Recommendation</p>
+                <p>Calculated similarity scores using a bag of words approach combined with sentiment analysis between all English articles using Apache Spark and Facebook’s NLP model </p>
+              </li>
+              <li>
+                <p>Path Finding Algorithm Web App</p>
+                <p> Dijkstra's, A*, bfs, dfs algorithms in a React Redux interactive web app.</p>
+              </li>
+            </ul> 
+          </p>
         </div>
 
         <div className="stage-cube-cont">
