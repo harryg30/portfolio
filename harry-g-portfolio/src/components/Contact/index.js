@@ -84,9 +84,9 @@ const Contact = () => {
           </div>
         </div>
         <div className="info-map">
-          Harry Gordenstein,
+          Harry Gordenstein
           <br />
-          Boston
+          Boston MA, 02130
           <br />
           <span>gordenstein30@gmail.com</span>
         </div>
