@@ -20,7 +20,7 @@ const Contact = () => {
     e.preventDefault()
 
     emailjs
-      .sendForm('gmail', 'template_YeJhZkgb', form.current, 'your-token')
+      .sendForm('service_9f5y8yo', 'template_h1t0bcn', form.current, '18nGvNStKbg9lvjNH')
       .then(
         () => {
           alert('Message successfully sent!')
@@ -99,7 +99,7 @@ const Contact = () => {
           </MapContainer>
         </div>
       </div>
-      <Loader type="pacman" />
+      <Loader type="ball-pulse-rise" />
     </>
   )
 }
