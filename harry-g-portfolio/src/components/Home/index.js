@@ -1,9 +1,8 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState,  } from 'react'
 import { Link } from 'react-router-dom'
 import Loader from 'react-loaders'
 import AnimatedLetters from '../AnimatedLetters'
-import LogoTitle from '../../assets/images/logo-h.png'
-import Logo from './Logo'
+import LogoH from '../../assets/images/headshot.jpg'
 import './index.scss'
 
 const Home = () => {
@@ -59,8 +58,9 @@ const Home = () => {
           <Link to="/contact" className="flat-button">
             CONTACT ME
           </Link>
+          <image src={LogoH} alt="headshot" width="460" height="345"/>
         </div>
-        <Logo />
+
       </div>
 
       <Loader type="ball-pulse-rise" />
