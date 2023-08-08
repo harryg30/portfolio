@@ -38,10 +38,11 @@
   animation-delay: 1s;
 }
 
-.container.contact-page {
+.container.contact-page,
+.container.followme-page {
   
   h1 {
-    font-size: 53px;
+    font-size: 50px;
     font-family: 'Coolvetica';
     color: #ff5100;
     font-weight: 400;
@@ -104,8 +105,7 @@
   }
 }
 }
-.container.about-page,
-.container.portfolio-page {
+.container.about-page {
   
     h1 {
       font-size: 53px;
@@ -116,6 +116,7 @@
       position: relative;
       margin-bottom: 40px;
       left: -10px;
+
     }
 
     p {
