@@ -58,7 +58,10 @@ const Home = () => {
           <Link to="/contact" className="flat-button">
             CONTACT ME
           </Link>
-          <image src={LogoH} alt="headshot" width="460" height="345"/>
+          </div>
+        
+        <div>
+          <image src="headshot.jpg" alt="headshot" width="460" height="345"/>
         </div>
 
       </div>
