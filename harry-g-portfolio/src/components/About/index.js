@@ -28,19 +28,7 @@ const About = () => {
           <h1>
             <AnimatedLetters
               letterClass={letterClass}
-              strArray={['A', 'b', 'o', 'u', 't', ' ', 'm', 'e']}
-              idx={15}
-            />
-          </h1>
-          <p>
-            I'm a professional with a track record of success in translating business requirements into 
-            new tools and applications designed to increase performance and support data-driven decision-making. 
-            A strong background in utilizing cross-functional collaboration to ensure a full-scope approach to all milestones and goals.
-          </p>
-          <h1>
-            <AnimatedLetters
-              letterClass={letterClass}
-              strArray={['E', 'x', 'p', 'e', 'r', 'e', 'n', 'c', 'e']}
+              strArray={["Experience".split("")]}
               idx={15}
             />
           </h1>

@@ -1,20 +1,19 @@
 .home-page {
+  img {
+    margin-right: 200px;
+    margin-top: 100px;
+    opacity: 1;
+    width: 30%;
+    height: auto;
+
+  }
+  
   .text-zone {
     position: absolute;
     left: 10%;
     top: 50%;
     transform: translateY(-50%);
-    width: 40%;
     max-height: 90%;
-  }
-
-  img {
-    margin-left: 20px;
-    opacity: 1;
-    width: 32px;
-    height: auto;
-    animation: rotateIn 1s linear both;
-    animation-delay: 1.4s;
   }
 
   h1 {
@@ -25,14 +24,11 @@
     font-family: 'Coolvetica';
     font-weight: 400;
 
-
     img {
       margin-left: 20px;
       opacity: 1;
       width: 32px;
       height: auto;
-      animation: rotateIn 1s linear both;
-      animation-delay: 1.4s;
     }
   }
 

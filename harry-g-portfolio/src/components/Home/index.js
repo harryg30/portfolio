@@ -8,23 +8,8 @@ import './index.scss'
 const Home = () => {
   const [letterClass, setLetterClass] = useState('text-animate')
 
-  const nameArray = [' ','H', 'a', 'r', 'r', 'y']
-  const jobArray = [
-    'w',
-    'e',
-    'b',
-    ' ',
-    'd',
-    'e',
-    'v',
-    'e',
-    'l',
-    'o',
-    'p',
-    'e',
-    'r',
-    '.',
-  ]
+  const nameArray = " Harry,".split("")
+  const jobArray = "web developer.".split("")
 
   useEffect(() => {
     setTimeout(() => {
@@ -59,10 +44,12 @@ const Home = () => {
             CONTACT ME
           </Link>
           </div>
-        
-        <div>
-          <image src="headshot.jpg" alt="headshot" width="460" height="345"/>
-        </div>
+          <div>
+            <img src={LogoH} alt="headshot" width="460" height="460" align="right" margin-right="10%"/>
+          </div>
+          
+         
+
 
       </div>
 
