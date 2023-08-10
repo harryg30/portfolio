@@ -1,11 +1,43 @@
-import { useState, useEffect } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import { MapContainer, TileLayer, CircleMarker, Marker, Popup } from 'react-leaflet'
 import 'leaflet/dist/leaflet.css'
+import AnimatedLetters from '../AnimatedLetters'
 
 const Map = () => {
+    const [letterClass, setLetterClass] = useState('text-animate')
     const [center, setCenter] = useState(undefined)
     const [zoom, setZoom] = useState(13)
     const [points, setPoints] = useState([])
+    const form = useRef()
+    const [selectedFile, setSelectedFile] = useState();
+    const [isSelected, setIsSelected] = useState(false)
+    const [isUploaded, setIsUploaded] = useState(false);
+  
+    const changeHandler = (event) => {
+      setSelectedFile(event.target.files[0]);
+      setIsSelected(true);
+    };
+
+    const handleSubmission = () => {
+        const formData = new FormData();
+        formData.append('file', selectedFile);
+        fetch('http://localhost:5000/upload',
+          {
+            method: 'POST',
+            body: formData,
+          }
+        )
+          .then((response) => response.json())
+          .then((result) => {
+            setIsUploaded(true)
+            console.log('Success:', result);
+          })
+    
+          .catch((error) => {
+            console.error('Error:', error);
+          });
+      };
+    
 
     useEffect(() => {
         fetch('http://localhost:5000/points')
@@ -21,7 +53,22 @@ const Map = () => {
 
     return(
         <>
-            <div className="container home-page">
+        <div className='container gpx-page'>
+         <div className="text-zone">
+         <h1>
+            <AnimatedLetters
+              letterClass={letterClass}
+              strArray={"Upload a gpx file".split("")}
+              idx={15}
+            />
+          </h1>
+          <p>When you add a gpx file the map and stats will update</p>
+            <form ref={form} onSubmit={handleSubmission}>
+                <input type="file" id="avatar" name="avatar" accept="csv" />
+                <input type="submit" className="flat-button" value="Upload" />
+            </form>
+         </div>
+         <div className="map-wrap">
             {center != undefined ? <MapContainer center={center} zoom={zoom} scrollWheelZoom={false}>
                 <TileLayer
                 attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
@@ -33,6 +80,8 @@ const Map = () => {
                 </MapContainer>
             :<></>}
             </div>
+        </div>
+   
         </>
 
     )
