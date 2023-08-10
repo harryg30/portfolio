@@ -21,6 +21,7 @@ const Map = () => {
     const handleSubmission = () => {
         const formData = new FormData();
         formData.append('file', selectedFile);
+        
         fetch('http://localhost:5000/upload',
           {
             method: 'POST',
@@ -36,9 +37,8 @@ const Map = () => {
           .catch((error) => {
             console.error('Error:', error);
           });
-      };
+    };
     
-
     useEffect(() => {
         fetch('http://localhost:5000/points')
        .then(res => res.json())
@@ -63,8 +63,8 @@ const Map = () => {
             />
           </h1>
           <p>When you add a gpx file the map and stats will update</p>
-            <form ref={form} onSubmit={handleSubmission}>
-                <input type="file" id="avatar" name="avatar" accept="csv" />
+            <form ref={form} onSubmit={handleSubmission}  method="POST" encType="multipart/form-data">
+                <input type="file" id="gpx" name="gpx" accept=".gpx" onChange={changeHandler}/>
                 <input type="submit" className="flat-button" value="Upload" />
             </form>
          </div>

@@ -6,8 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
   faLinkedin,
   faGithub,
-  faYoutube,
-  faSkype,
+  faYoutube
 } from '@fortawesome/free-brands-svg-icons'
 import {
   faHome,

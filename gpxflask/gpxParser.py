@@ -6,6 +6,7 @@ import datetime
 def parse(file):
     gpx_file = open(file, 'r')
     gpx = gpxpy.parse(gpx_file)
+    print("parseing")
     return gpx.to_xml()
 
 
