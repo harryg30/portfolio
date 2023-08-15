@@ -90,6 +90,12 @@
       }
     }
 
+    a.sbc-link {
+      &:after {
+        content: 'SBC';
+      }
+    }
+
     a.gpx-link {
       &:after {
         content: 'BIKES';

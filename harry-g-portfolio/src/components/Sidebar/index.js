@@ -11,6 +11,7 @@ import {
 import {
   faHome,
   faUser,
+  faMicrochip,
   faEnvelope,
   faPersonBiking,
   faBars,
@@ -44,6 +45,13 @@ const Sidebar = () => {
           to="/about"
           onClick={() => setShowNav(false)}>
           <FontAwesomeIcon icon={faUser} color="#4d4d4e" />
+        </NavLink>
+        <NavLink 
+          activeclassname="active"
+          className="sbc-link"
+          to="/sbc"
+          onClick={() => setShowNav(false)}>
+          <FontAwesomeIcon icon={faMicrochip} color="#4d4d4e" />
         </NavLink>
         <NavLink 
           activeclassname="active"
