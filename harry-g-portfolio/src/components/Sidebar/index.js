@@ -6,8 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
   faLinkedin,
   faGithub,
-  faYoutube,
-  faSkype,
+  faYoutube
 } from '@fortawesome/free-brands-svg-icons'
 import {
   faHome,
@@ -46,13 +45,13 @@ const Sidebar = () => {
           onClick={() => setShowNav(false)}>
           <FontAwesomeIcon icon={faUser} color="#4d4d4e" />
         </NavLink>
-        {/* <NavLink 
+        <NavLink 
           activeclassname="active"
-          className="followme-link"
-          to="/follow"
+          className="gpx-link"
+          to="/gpx"
           onClick={() => setShowNav(false)}>
           <FontAwesomeIcon icon={faPersonBiking} color="#4d4d4e" />
-        </NavLink> */}
+        </NavLink>
         <NavLink
           activeclassname="active"
           className="contact-link"
