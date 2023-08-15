@@ -58,6 +58,13 @@ const Map = () => {
          <h1>
             <AnimatedLetters
               letterClass={letterClass}
+              strArray={"Work In Progress".split("")}
+              idx={15}
+            />
+          </h1>
+         <h1>
+            <AnimatedLetters
+              letterClass={letterClass}
               strArray={"Upload a gpx file".split("")}
               idx={15}
             />
