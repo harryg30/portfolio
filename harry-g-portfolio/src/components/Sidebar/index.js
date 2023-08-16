@@ -56,7 +56,7 @@ const Sidebar = () => {
         <NavLink 
           activeclassname="active"
           className="gpx-link"
-          to="/gpx"
+          to="/bluebike"
           onClick={() => setShowNav(false)}>
           <FontAwesomeIcon icon={faPersonBiking} color="#4d4d4e" />
         </NavLink>
