@@ -5,7 +5,7 @@ import Contact from './components/Contact'
 import Sbc from './components/Sbc'
 import Layout from './components/Layout'
 import Dashboard from './components/Dashboard'
-import Map from './components/Gpx'
+import BlueBike from './components/BlueBike'
 import './App.scss'
 
 function App() {
@@ -16,7 +16,7 @@ function App() {
           <Route index element={<Home />} />
           <Route path="about" element={<About />} />
           <Route path="/sbc" element={<Sbc/>} />
-          <Route path="/gpx" element={<Map/>}/>
+          <Route path="/bluebike" element={<BlueBike/>}/>
           <Route path="/contact" element={<Contact />} />
           <Route path="/dashboard" element={<Dashboard />} />
         </Route>
