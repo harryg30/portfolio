@@ -1,0 +1,1 @@
+Im trying to get a Next.js prisam sqlite stack set up. currently stuck trying to get Next.js setup probably should try in a diferent folder than my main app
