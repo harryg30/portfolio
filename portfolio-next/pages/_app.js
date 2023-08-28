@@ -1,5 +1,9 @@
-import './App.scss'
-
+import Layout  from '../app/Layout'
+ 
 export default function MyApp({ Component, pageProps }) {
-    return <Component {...pageProps} />
+  return (
+    <Layout>
+      <Component {...pageProps} />
+    </Layout>
+  )
 }

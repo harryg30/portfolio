@@ -2,10 +2,10 @@ import { useEffect, useState,  } from 'react'
 import { Link } from 'next/link'
 import Loader from 'react-loaders'
 import AnimatedLetters from '../components/AnimatedLetters'
-import LogoH from '../../../assets/images/headshot.jpg'
+import LogoH from '../../assets/images/headshot.jpg'
 import './index.module.scss'
 
-const Home = () => {
+export default function Home() {
   const [letterClass, setLetterClass] = useState('text-animate')
 
   const nameArray = " Harry,".split("")
@@ -58,4 +58,3 @@ const Home = () => {
   )
 }
 
-export default Home

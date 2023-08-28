@@ -12,7 +12,7 @@ import AnimatedLetters from '../components/AnimatedLetters'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import './index.module.scss'
 
-const About = () => {
+export default function About() {
   const [letterClass, setLetterClass] = useState('text-animate')
 
   useEffect(() => {
@@ -126,5 +126,3 @@ const About = () => {
     </>
   )
 }
-
-export default About

@@ -1,8 +1,7 @@
 
-import Sidebar from '../components/Sidebar'
-import './index.module.scss'
+import Sidebar from '../../components/Sidebar'
 
-const Layout = ({children}) => {
+export default function Layout({ children }) {
   return (
     <div className="App">
       <Sidebar />
@@ -13,4 +12,3 @@ const Layout = ({children}) => {
   )
 }
 
-export default Layout

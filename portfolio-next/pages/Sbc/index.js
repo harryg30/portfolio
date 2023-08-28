@@ -1,8 +1,8 @@
 import { useEffect, useState, useRef } from 'react'
-import AnimatedLetters from '../AnimatedLetters'
-import sbc from '../../../assets/images/sbc.jpg'
+import AnimatedLetters from '../components/AnimatedLetters'
+import sbc from '../../assets/images/sbc.jpg'
 
-const Sbc = () => {
+export default function Sbc() {
     const [letterClass, setLetterClass] = useState('text-animate')
     return (
         <>
@@ -35,4 +35,3 @@ const Sbc = () => {
         </>
     )
 }
-export default Sbc
