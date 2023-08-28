@@ -8,7 +8,7 @@ import {
   faReact,
 } from '@fortawesome/free-brands-svg-icons'
 import Loader from 'react-loaders'
-import AnimatedLetters from '../components/AnimatedLetters'
+import AnimatedLetters from '../../components/AnimatedLetters'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import './index.module.scss'
 

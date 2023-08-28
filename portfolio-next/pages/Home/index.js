@@ -1,9 +1,9 @@
 import { useEffect, useState,  } from 'react'
 import { Link } from 'next/link'
 import Loader from 'react-loaders'
-import AnimatedLetters from '../components/AnimatedLetters'
+import AnimatedLetters from '../../components/AnimatedLetters'
 import LogoH from '../../assets/images/headshot.jpg'
-import './index.module.scss'
+import './index.module.css'
 
 export default function Home() {
   const [letterClass, setLetterClass] = useState('text-animate')
@@ -40,7 +40,7 @@ export default function Home() {
             />
           </h1>
           <h2>Full Stack Developer / Data Scientist / Cyclist</h2>
-          <Link to="/contact" className="flat-button">
+          <Link href="/contact" className="flat-button">
             CONTACT ME
           </Link>
           </div>
