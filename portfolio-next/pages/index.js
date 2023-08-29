@@ -1,20 +1,15 @@
 import '../styles/globals.scss'
 import Head from 'next/head'
-import {App} from './_app'
-import {Layout} from '../app/Layout'
 import React from 'react';
+import Home from './Home'
 
-const Home = () => {
+const landing = () => {
   return (
-    <div className='App'>
-      <Layout>
-        <Head>
-          <App />
-        </Head>
-      </Layout>
+    <div>
+      <Home/>
     </div>
 
   )
 }
 
-export default Home
+export default landing

@@ -1,11 +1,14 @@
-import Layout  from '../app/Layout'
+import Layout from '../app/layout'
 import '../styles/globals.scss'
 import React from 'react';
 
 export default function App({ Component, pageProps }) {
   return (
-    <Layout>
-      <Component {...pageProps} />
-    </Layout>
+    <div>
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
+    </div>
+
   )
 }
