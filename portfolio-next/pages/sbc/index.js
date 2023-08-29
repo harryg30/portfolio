@@ -1,5 +1,6 @@
 import { useEffect, useState, useRef } from 'react'
 import React from 'react';
+import Image from 'next/image'
 import AnimatedLetters from '../../components/AnimatedLetters'
 import sbc from '../../assets/images/sbc.jpg'
 
@@ -17,7 +18,7 @@ export default function Sbc() {
                     </h1>
                     <div>
                         <b>E-Ink discord bot</b>
-                        <img src={sbc} alt="eink" width="280" height="280" align="right" />
+                        <Image src={sbc} alt="eink" width="280" height="280" align="right" />
                         <p>I wanted to add a fun and interactive object to my desk decorations.
                             When I heard about the 7 color e-ink display made by pimoroni my mind imeadiatly jumped to hooking it up to discord.
                             I already had a discord bot running on my raspberry pi so getting this working was as simple as adding an asyncronous

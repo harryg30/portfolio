@@ -1,7 +1,7 @@
 import '../styles/globals.scss'
 import Head from 'next/head'
 import React from 'react';
-import Home from './Home'
+import Home from './home'
 
 const landing = () => {
   return (

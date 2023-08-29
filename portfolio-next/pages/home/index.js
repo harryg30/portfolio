@@ -1,6 +1,7 @@
 import { useEffect, useState,  } from 'react'
 import React from 'react';
 import Link from 'next/link'
+import Image from 'next/image'
 import Loader from 'react-loaders'
 import AnimatedLetters from '../../components/AnimatedLetters'
 import LogoH from '../../assets/images/headshot.jpg'
@@ -45,8 +46,8 @@ export default function Home() {
             CONTACT ME
           </Link>
           </div>
-          <div>
-            <img src={LogoH} alt="headshot" width="460" height="460" align="right" margin-right="10%"/>
+          <div className='pic-zone'>
+            <Image src={LogoH} alt="headshot" width="460" height="460"  />
           </div>
           
          
