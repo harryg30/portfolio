@@ -1,10 +1,11 @@
 import { useEffect, useState, useRef } from 'react'
+import React from 'react';
 import { MapContainer, TileLayer, CircleMarker, Marker, Popup } from 'react-leaflet'
 import 'leaflet/dist/leaflet.css'
-import AnimatedLetters from '../components/AnimatedLetters'
-import './index.module.scss'
+import { AnimatedLetters } from '../components/AnimatedLetters'
+import "./index.module.scss"
 
-const Map = () => {
+export default function Map() {
     const [letterClass, setLetterClass] = useState('text-animate')
     const [center, setCenter] = useState(undefined)
     const [zoom, setZoom] = useState(13)
@@ -94,5 +95,3 @@ const Map = () => {
 
     )
 }
-
-export default Map;

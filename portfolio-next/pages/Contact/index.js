@@ -1,12 +1,13 @@
 import { useEffect, useState, useRef } from 'react'
 import Loader from 'react-loaders'
+import React from 'react';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
 import emailjs from '@emailjs/browser'
-import AnimatedLetters from '../components/AnimatedLetters'
-import './index.module.scss'
+import AnimatedLetters from '../../components/AnimatedLetters'
+import "./index.module.scss"
 
 
-const Contact = () => {
+export default function Contact() {
   const [letterClass, setLetterClass] = useState('text-animate')
   const form = useRef()
 
@@ -106,4 +107,4 @@ const Contact = () => {
   )
 }
 
-export default Contact
+

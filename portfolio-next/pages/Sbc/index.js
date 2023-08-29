@@ -1,5 +1,6 @@
 import { useEffect, useState, useRef } from 'react'
-import AnimatedLetters from '../components/AnimatedLetters'
+import React from 'react';
+import { AnimatedLetters } from '../components/AnimatedLetters'
 import sbc from '../../assets/images/sbc.jpg'
 
 export default function Sbc() {

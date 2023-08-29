@@ -1,5 +1,6 @@
-import './index.module.scss'
+import "./index.module.scss"
 import { useState } from 'react'
+import React from 'react';
 import LogoS from '../../assets/images/headshot.jpg'
 import LogoSubtitle from '../../assets/images/logo_sub.png'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -26,7 +27,7 @@ export default function Sidebar() {
     <div className="nav-bar">
       <Link 
         className="logo"
-        href="/"
+        href="/home"
         onClick={() => setShowNav(false)}>
         <img src={LogoS} alt="Logo" />
         <img className="sub-logo" src={LogoSubtitle} alt="Harry" />
@@ -35,7 +36,7 @@ export default function Sidebar() {
         <Link 
           exact="true"
           activeclassname="active"
-          href="/"
+          href="/home"
           onClick={() => setShowNav(false)}>
           <FontAwesomeIcon icon={faHome} color="#4d4d4e" />
         </Link>

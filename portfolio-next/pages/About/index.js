@@ -8,9 +8,10 @@ import {
   faReact,
 } from '@fortawesome/free-brands-svg-icons'
 import Loader from 'react-loaders'
+import React from 'react';
 import AnimatedLetters from '../../components/AnimatedLetters'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import './index.module.scss'
+import "./index.module.scss"
 
 export default function About() {
   const [letterClass, setLetterClass] = useState('text-animate')

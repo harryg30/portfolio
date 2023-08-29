@@ -1,10 +1,11 @@
 import { useEffect, useState, useRef } from 'react'
+import React from 'react';
 import { MapContainer, TileLayer, CircleMarker, Marker, Popup } from 'react-leaflet'
 import 'leaflet/dist/leaflet.css'
-import Stations from './Stations'
-import './index.module.scss'
+import {Stations} from './Stations'
+import "./index.module.scss"
 
-const BlueBike = () => {
+export default function BlueBike()  {
     const [center, setCenter] = useState([42.3342, -71.1041])
     const [zoom, setZoom] = useState(13)
 
@@ -28,5 +29,3 @@ const BlueBike = () => {
         </>
     )
 }
-
-export default BlueBike;

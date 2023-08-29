@@ -1,6 +1,8 @@
 import Layout  from '../app/Layout'
- 
-export default function MyApp({ Component, pageProps }) {
+import '../styles/globals.scss'
+import React from 'react';
+
+export default function App({ Component, pageProps }) {
   return (
     <Layout>
       <Component {...pageProps} />

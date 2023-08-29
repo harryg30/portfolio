@@ -1,9 +1,10 @@
 import { useEffect, useState,  } from 'react'
-import { Link } from 'next/link'
+import React from 'react';
+import Link from 'next/link'
 import Loader from 'react-loaders'
 import AnimatedLetters from '../../components/AnimatedLetters'
 import LogoH from '../../assets/images/headshot.jpg'
-import './index.module.css'
+import "./index.module.scss"
 
 export default function Home() {
   const [letterClass, setLetterClass] = useState('text-animate')

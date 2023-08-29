@@ -1,10 +1,11 @@
 import { useState } from 'react'
+import React from 'react';
 import { CircleMarker, Marker, Popup } from 'react-leaflet'
 // import stationsFile from '../../../assets/data/current_bluebikes_stations.json'
 import L from 'leaflet';
 
 
-const Stations = () => {
+export default function Stations() {
     const stations = useState([])// useState(stationsFile)
 
     return (
@@ -22,5 +23,3 @@ const Stations = () => {
 
     )
 }
-
-export default Stations;
