@@ -49,17 +49,17 @@ export default function Sidebar() {
         </Link>
         <Link 
           activeclassname="active"
-          className="sbc-link"
-          href="/sbc"
-          onClick={() => setShowNav(false)}>
-          <FontAwesomeIcon icon={faMicrochip} color="#4d4d4e" />
-        </Link>
-        <Link 
-          activeclassname="active"
           className="gpx-link"
           href="/bluebike"
           onClick={() => setShowNav(false)}>
           <FontAwesomeIcon icon={faPersonBiking} color="#4d4d4e" />
+        </Link>
+        <Link 
+          activeclassname="active"
+          className="sbc-link"
+          href="/sbc"
+          onClick={() => setShowNav(false)}>
+          <FontAwesomeIcon icon={faMicrochip} color="#4d4d4e" />
         </Link>
         <Link
           activeclassname="active"

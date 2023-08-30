@@ -3,11 +3,14 @@ import React from 'react';
 import 'leaflet/dist/leaflet.css'
 import "./index.module.scss"
 import dynamic from "next/dynamic"
+import { TileLayer, CircleMarker, Marker, Popup } from 'react-leaflet'
+import Stations from './Stations';
+import Map from '../../components/Map'
 
-const Map = dynamic(() => import("./map"), { ssr:false })
+const DEFAULT_CENTER = [42.3342, -71.1041]
 
-export default function BlueBike()  {
-    const [center, setCenter] = useState([42.3342, -71.1041])
+export default function BlueBike() {
+    const [center, setCenter] = useState(DEFAULT_CENTER)
     const [zoom, setZoom] = useState(13)
 
     return (
@@ -16,8 +19,19 @@ export default function BlueBike()  {
                 <div className='text-zone'>
                     <h1>BlueBike rider data</h1>
                 </div>
-                <div  className='map-wrap'>
-                    {center != undefined ? <Map center={center}/>
+                <div className='map-wrap'>
+                    {center != undefined ?
+                        <Map  width="800" height="400" center={center} zoom={12}>
+                            {({ TileLayer, Marker, Popup }) => (
+                                <>
+                                    <TileLayer
+                                        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                                        attribution="&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
+                                    />
+                                    <Stations/>
+                                </>
+                            )}
+                        </Map>
                         : <></>}
                 </div>
             </div>

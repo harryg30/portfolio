@@ -24,7 +24,7 @@ export default function About() {
 
   return (
     <>
-      <div className="container sbc-page">
+      <div className="container about-page">
         <div className="text-zone">
           <h1>
             <AnimatedLetters
