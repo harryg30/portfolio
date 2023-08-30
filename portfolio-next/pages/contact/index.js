@@ -104,7 +104,7 @@ export default function Contact() {
           </Map>
         </div>
       </div>
-      <Loader type="ball-pulse-rise" />
+      {/* <Loader type="ball-pulse-rise" /> */}
     </>
   )
 }

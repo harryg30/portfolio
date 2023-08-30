@@ -68,7 +68,7 @@ export default function About() {
           Spearheaded the development of new ServiceNow dashboards designed to close gaps and increase the performance of sales and IT team workflows.
           </p>
           <h1>
-            <AnimatedLetters
+             <AnimatedLetters
               letterClass={letterClass}
               strArray={['S', 'k', 'i', 'l', 'l', 's']}
               idx={15}
@@ -100,7 +100,7 @@ export default function About() {
           </p>
         </div>
       </div>
-      <Loader type="ball-pulse-rise" />
+      {/* <Loader type="ball-pulse-rise" /> */}
     </>
   )
 }

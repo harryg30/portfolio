@@ -10,6 +10,7 @@
     "@fortawesome/free-brands-svg-icons": "^6.4.2",
     "@fortawesome/free-solid-svg-icons": "^6.4.2",
     "@fortawesome/react-fontawesome": "^0.2.0",
+    "@prisma/client": "^5.2.0",
     "copy-webpack-plugin": "^11.0.0",
     "fortawesome": "^0.0.1-security",
     "next": "latest",
@@ -18,5 +19,8 @@
     "react-leaflet": "^4.2.1",
     "react-loaders": "^3.0.1",
     "sass": "^1.66.1"
+  },
+  "devDependencies": {
+    "prisma": "^5.2.0"
   }
 }
