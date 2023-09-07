@@ -1,4 +1,3 @@
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -9,33 +8,58 @@ datasource db {
 }
 
 model Station {
-  id             Int             @id @default(autoincrement())
-  number         String
-  name           String
-  latitude       Float
-  longitude      Float
-  district       String
-  public         Boolean
-  totalDocks     Int
-  deploymentYear Int
-  partOfRide     String @default("no")
-  stationOnRide  StationOnRide[]
+  id              Int               @id @default(autoincrement())
+  number          String            @unique
+  name            String
+  latitude        Float
+  longitude       Float
+  district        String
+  public          Boolean
+  totalDocks      Int
+  deploymentYear  Int
+  startingStation StartingStation[]
+  endingStation   EndingStation[]
 }
 
 model Ride {
-  id            Int             @id @default(autoincrement())
-  rideId        String
-  startTime     String
-  endedTime     String
-  member        Boolean
-  stationOnRide StationOnRide[]
+  id              Int               @id @default(autoincrement())
+  startTime       String            @unique
+  endTime         String
+  member          Boolean
+  startingStation StartingStation[]
+  endingStation   EndingStation[]
+  bikeOnRide      BikeOnRide[]
 }
 
-model StationOnRide {
+model Bike {
+  id         Int          @id @default(autoincrement())
+  bikeId     Int          @unique
+  bikeOnRide BikeOnRide[]
+}
+
+model StartingStation {
   ride      Ride    @relation(fields: [rideId], references: [id])
   rideId    Int
   station   Station @relation(fields: [stationId], references: [id])
   stationId Int
-  wasStart  Boolean
+
   @@id([rideId, stationId])
+}
+
+model EndingStation {
+  ride      Ride    @relation(fields: [rideId], references: [id])
+  rideId    Int
+  station   Station @relation(fields: [stationId], references: [id])
+  stationId Int
+
+  @@id([rideId, stationId])
+}
+
+model BikeOnRide {
+  ride   Ride @relation(fields: [rideId], references: [id])
+  rideId Int
+  bike   Bike @relation(fields: [bikeId], references: [id])
+  bikeId Int
+
+  @@id([rideId, bikeId])
 }

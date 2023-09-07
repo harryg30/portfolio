@@ -8,18 +8,15 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
         return res.status(405).json({ message: 'method not allowed' });
     }
 
-    const rideData = JSON.parse(req.body)
+    const bikeData = JSON.parse(req.body)
 
-    try {
-        const savedRide = await prisma.ride.create({
-            data: rideData,
-        })
+    const savedBike = await prisma.bike.create({
+        data: bikeData,
+    })
 
-        return res.json(savedRide)
-    } catch (error) {
-        console.log(error)
-        return res.status(500)
-    }
+    
+    return res.json(savedBike)
+
 
 
 }
