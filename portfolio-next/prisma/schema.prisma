@@ -18,7 +18,7 @@ model Station {
   public         Boolean
   totalDocks     Int
   deploymentYear Int
-  partOfRide     String
+  partOfRide     String @default("no")
   stationOnRide  StationOnRide[]
 }
 

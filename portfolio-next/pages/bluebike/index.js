@@ -2,7 +2,6 @@ import { useEffect, useState, useRef } from 'react'
 import React from 'react';
 import 'leaflet/dist/leaflet.css'
 import "./index.module.scss"
-import dynamic from "next/dynamic"
 import { TileLayer, CircleMarker, Marker, Popup } from 'react-leaflet'
 import Stations from './Stations';
 import Map from '../../components/Map'

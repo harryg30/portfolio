@@ -21,6 +21,8 @@
     "sass": "^1.66.1"
   },
   "devDependencies": {
-    "prisma": "^5.2.0"
+    "@types/react": "18.2.21",
+    "prisma": "^5.2.0",
+    "typescript": "5.2.2"
   }
 }
