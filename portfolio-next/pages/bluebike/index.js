@@ -10,7 +10,7 @@ const DEFAULT_CENTER = [42.3342, -71.1041]
 
 export default function BlueBike() {
     const [center, setCenter] = useState(DEFAULT_CENTER)
-    const [zoom, setZoom] = useState(13)
+    const [zoom, setZoom] = useState(12)
 
     return (
         <>
@@ -20,7 +20,7 @@ export default function BlueBike() {
                 </div>
                 <div className='map-wrap'>
                     {center != undefined ?
-                        <Map  width="800" height="400" center={center} zoom={12}>
+                        <Map  width="800" height="400" center={center} zoom={zoom}>
                             {({ TileLayer, Marker, Popup }) => (
                                 <>
                                     <TileLayer

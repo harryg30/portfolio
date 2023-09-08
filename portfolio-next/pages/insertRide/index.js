@@ -1,6 +1,6 @@
 import { useEffect, useState, useRef } from 'react'
 import React from 'react';
-import rideFile from '../../assets/data/testRides.json'
+import rideFile from '../../assets/data/202212-bluebikes-tripdata.json'
 import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
@@ -95,7 +95,6 @@ async function insertFile(){
         try{
 
             if(await prisma.ride.findFirst({where:{startTime: rideObj.startTime}}) == null || await prisma.ride.count() == 0 ){
-                console.log("here")
                 await saveRide(rideObj)
             }
             rideRes = await prisma.ride.findFirst({ where:{ startTime: rideObj.startTime }, select:{id: true}})
@@ -133,8 +132,6 @@ async function insertFile(){
         }
         try{
             if(rideRes!= null && bikeRes != null){
-                console.log(bikeOnRideObj)
-
                 await saveBikeOnRide(bikeOnRideObj)
             }
         }catch (error){
@@ -164,7 +161,7 @@ export default function insertStation() {
             <div className='home-page'>
                 <div className='text-zone'>
                     <h1>Inserting stations</h1>
-                    <button onClick={ insertFile()}/>
+                    {/* <button onClick={ insertFile()}/> */}
                 </div>
             </div>
         </>
