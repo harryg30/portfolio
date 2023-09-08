@@ -1,4 +1,4 @@
-import Layout from '../app/layout'
+import Layout from '../app/Layout'
 import '../styles/globals.scss'
 import React from 'react';
 import "leaflet/dist/leaflet.css";
