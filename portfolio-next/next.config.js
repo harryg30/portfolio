@@ -21,6 +21,7 @@ const nextConfig = {
   sassOptions: {
     includePaths: [path.join(__dirname, 'styles')],
   },
+  basePath: "/portfolio-next"
 }
 
 module.exports = nextConfig
