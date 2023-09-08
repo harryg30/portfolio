@@ -21,6 +21,9 @@ export default function Stations() {
         .then(data => setStations(data.stations))
     }, [])
 
+
+    // useRouter for station view
+
     return (
         <>{
             stations.length === 0 || stations === undefined
