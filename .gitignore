@@ -1,2 +1,10 @@
 
 harry-g-portfolio/src/components/FollowMe/secrets.json
+portfolio-next/.env
+portfolio-next/.next/app-build-manifest.json
+portfolio-next/.next/build-manifest.json
+*.webp
+*.gz
+*.old
+*/.next/*
+*/node_modules/*
