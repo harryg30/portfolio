@@ -1,0 +1,50 @@
+[
+	{
+		"tripduration": "180",
+		"startTime": "2022-12-01 00:02:44.9630",
+		"endedTime": "2022-12-01 00:05:45.2260",
+		"start_station_id": "115",
+		"start_station_name": "Porter Square Station",
+		"start_station_latitude": "42.387995",
+		"start_station_longitude": "-71.119084",
+		"_station_id": "99",
+		"end_station_name": "Wilson Square",
+		"end_station_latitude": "42.38567578752914",
+		"end_station_longitude": "-71.11412136298895",
+		"bikeid": "8245",
+		"usertype": "Subscriber",
+		"postal_code": "02143"
+	},
+	{
+		"tripduration": "295",
+		"startTime": "2022-12-01 00:03:11.3990",
+		"endedTime": "2022-12-01 00:08:06.9320",
+		"start_station_id": "32",
+		"start_station_name": "Landmark Center - Brookline Ave at Park Dr",
+		"start_station_latitude": "42.343690557197476",
+		"start_station_longitude": "-71.10235286881107",
+		"_station_id": "160",
+		"end_station_name": "Wentworth Institute of Technology - Huntington Ave at Vancouver St",
+		"end_station_latitude": "42.33758601097239",
+		"end_station_longitude": "-71.09627097845076",
+		"bikeid": "6849",
+		"usertype": "Subscriber",
+		"postal_code": "01886"
+	},
+	{
+		"tripduration": "737",
+		"startTime": "2022-12-01 00:03:51.2520",
+		"endedTime": "2022-12-01 00:16:09.2200",
+		"start_station_id": "200",
+		"start_station_name": "Washington St at Melnea Cass Blvd",
+		"start_station_latitude": "42.332817",
+		"start_station_longitude": "-71.081198",
+		"_station_id": "36",
+		"end_station_name": "Copley Square - Dartmouth St at Boylston St",
+		"end_station_latitude": "42.34992828230057",
+		"end_station_longitude": "-71.07739206866427",
+		"bikeid": "2014",
+		"usertype": "Subscriber",
+		"postal_code": "02120"
+	}
+]

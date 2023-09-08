@@ -1,0 +1,65 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Station {
+  id              Int               @id @default(autoincrement())
+  number          String            @unique
+  name            String
+  latitude        Float
+  longitude       Float
+  district        String
+  public          Boolean
+  totalDocks      Int
+  deploymentYear  Int
+  startingStation StartingStation[]
+  endingStation   EndingStation[]
+}
+
+model Ride {
+  id              Int               @id @default(autoincrement())
+  startTime       String            @unique
+  endTime         String
+  member          Boolean
+  startingStation StartingStation[]
+  endingStation   EndingStation[]
+  bikeOnRide      BikeOnRide[]
+}
+
+model Bike {
+  id         Int          @id @default(autoincrement())
+  bikeId     Int          @unique
+  bikeOnRide BikeOnRide[]
+}
+
+model StartingStation {
+  ride      Ride    @relation(fields: [rideId], references: [id])
+  rideId    Int
+  station   Station @relation(fields: [stationId], references: [id])
+  stationId Int
+
+  @@id([rideId, stationId])
+}
+
+model EndingStation {
+  ride      Ride    @relation(fields: [rideId], references: [id])
+  rideId    Int
+  station   Station @relation(fields: [stationId], references: [id])
+  stationId Int
+
+  @@id([rideId, stationId])
+}
+
+model BikeOnRide {
+  ride   Ride @relation(fields: [rideId], references: [id])
+  rideId Int
+  bike   Bike @relation(fields: [bikeId], references: [id])
+  bikeId Int
+
+  @@id([rideId, bikeId])
+}
