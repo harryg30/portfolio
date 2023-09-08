@@ -20,8 +20,8 @@ export default function Sbc() {
                         <b>E-Ink discord bot</b>
                         <Image src={sbc} alt="eink" width="280" height="280" align="right" />
                         <p>I wanted to add a fun and interactive object to my desk decorations.
-                            When I heard about the 7 color e-ink display made by pimoroni my mind imeadiatly jumped to hooking it up to discord.
-                            I already had a discord bot running on my raspberry pi so getting this working was as simple as adding an asyncronous
+                            When I heard about the 7 color e-ink display made by pimoroni my mind immediately jumped to hooking it up to discord.
+                            I already had a discord bot running on my raspberry pi so getting this working was as simple as adding an asynchronous
                             on_message listener from the discord api to my bot. This listener scans the channels I defined for messages with an image and sending it to the
                             draw function of the pimoroni display. </p>
                     </div>
