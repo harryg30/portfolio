@@ -4,8 +4,17 @@ import rideFile from '../../assets/data/testRides.json'
 import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
+export const checkEnvironment = () => {
+    let base_url =
+      process.env.NODE_ENV === "development"
+        ? "http://localhost:3000"
+        : "https://example.com"; // https://v2ds.netlify.app
+  
+    return base_url;
+  };
+
 async function saveRide(ride) {
-    const response = await fetch('/api/ride', {
+    const response = await fetch(checkEnvironment().concat('/api/ride'), {
         method: 'POST',
         body: JSON.stringify(ride)
     });
@@ -18,7 +27,7 @@ async function saveRide(ride) {
 }
 
 async function saveBike(bike) {
-    const response = await fetch('/api/bike', {
+    const response = await fetch(checkEnvironment().concat('/api/bike'), {
         method: 'POST',
         body: JSON.stringify(bike)
     });
@@ -31,7 +40,7 @@ async function saveBike(bike) {
 }
 
 async function saveBikeOnRide(bikeOnRide) {
-    const response = await fetch('/api/bikeOnRide', {
+    const response = await fetch(checkEnvironment().concat('/api/bikeOnRide'), {
         method: 'POST',
         body: JSON.stringify(bikeOnRide)
     });
@@ -44,7 +53,7 @@ async function saveBikeOnRide(bikeOnRide) {
 }
 
 async function saveStartingStation(startingStation) {
-    const response = await fetch('/api/StartingStation', {
+    const response = await fetch(checkEnvironment().concat('/api/startingStation'), {
         method: 'POST',
         body: JSON.stringify(startingStation)
     });
@@ -57,7 +66,7 @@ async function saveStartingStation(startingStation) {
 }
 
 async function saveEndingStation(endingStation) {
-    const response = await fetch('/api/EndingStation', {
+    const response = await fetch(checkEnvironment().concat('/api/endingStation'), {
         method: 'POST',
         body: JSON.stringify(endingStation)
     });
@@ -78,41 +87,56 @@ async function insertFile(){
             endTime: rides[r].endedTime, 
             member: true
         }
-        let rideId = null
+        let rideRes =null
         let bikeObj = {
             bikeId: parseInt(rides[r].bikeid)
         }
-        let bikeId = null
-        
+        let bikeRes = null
         try{
-            await saveRide(rideObj)
-            rideId = prisma.ride.findFirst({ where:{ startTime: rideObj.startTime }})
+
+            if(await prisma.ride.findFirst({where:{startTime: rideObj.startTime}}) == null || await prisma.ride.count() == 0 ){
+                console.log("here")
+                await saveRide(rideObj)
+            }
+            rideRes = await prisma.ride.findFirst({ where:{ startTime: rideObj.startTime }, select:{id: true}})
         }catch (error){
             console.error(error)
         }
 
         try{
-            await saveBike(bikeObj)
-            bikeId = prisma.bike.findFirst({ where:{ bikeid: bikeObj.bikeId }})
+            if(await prisma.bike.findFirst({where:{bikeId: bikeObj.bikeId}}) == null || await prisma.bike.count() == 0 ){
+                await saveBike(bikeObj)
+            }
+            bikeRes = await prisma.bike.findFirst({ where:{ bikeId: bikeObj.bikeId }, select:{id: true}})
         }catch (error){
             console.error(error)
         }
 
         const bikeOnRideObj = {
-            rideId: rideId,
-            bikeId: bikeId
-        }
-        const startingStationObj = {
-            stationId: prisma.station.findFirst({where:{name: rides[r].start_station_name}, select: id}),
-            rideId: rideId
-        }
-        const endingStationObj = {
-            stationId: prisma.station.findFirst({where:{name: rides[r].end_station_name}, select: id}),
-            rideId: rideId
+            ride: { 
+                connect: rideRes
+            },
+            bike:  { 
+                connect: bikeRes
+            }
         }
 
+        const startS =  await prisma.station.findFirst({where:{name: rides[r].start_station_name}, select: {id: true}})
+        const endS =  await prisma.station.findFirst({where:{name: rides[r].end_station_name}, select: {id: true}})
+        const startingStationObj = {
+            station: {connect: startS},
+            ride: { connect: rideRes }
+        }
+        const endingStationObj = {
+            station: {connect: endS},
+            ride: { connect: rideRes }
+        }
         try{
-            await saveBikeOnRide(bikeOnRideObj)
+            if(rideRes!= null && bikeRes != null){
+                console.log(bikeOnRideObj)
+
+                await saveBikeOnRide(bikeOnRideObj)
+            }
         }catch (error){
             console.error(error)
         }

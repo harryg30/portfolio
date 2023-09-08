@@ -13,5 +13,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     const savedBikeOnRide = await prisma.bikeOnRide.create({
         data: bikeOnRideData,
     })
+
+
     return res.json(savedBikeOnRide)
 }
