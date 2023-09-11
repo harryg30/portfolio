@@ -23,18 +23,20 @@ model Station {
 
 model Ride {
   id              Int               @id @default(autoincrement())
-  startTime       String            @unique
-  endTime         String
+  startTime       DateTime            @unique
+  endTime         DateTime
   member          Boolean
+  bike            Bike @relation(fields: [bikeId], references: [id])
+  bikeId          Int
   startingStation StartingStation[]
   endingStation   EndingStation[]
-  bikeOnRide      BikeOnRide[]
+
 }
 
 model Bike {
   id         Int          @id @default(autoincrement())
   bikeId     Int          @unique
-  bikeOnRide BikeOnRide[]
+  ride       Ride[]
 }
 
 model StartingStation {
@@ -55,11 +57,3 @@ model EndingStation {
   @@id([rideId, stationId])
 }
 
-model BikeOnRide {
-  ride   Ride @relation(fields: [rideId], references: [id])
-  rideId Int
-  bike   Bike @relation(fields: [bikeId], references: [id])
-  bikeId Int
-
-  @@id([rideId, bikeId])
-}
