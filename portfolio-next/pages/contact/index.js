@@ -1,11 +1,17 @@
 import { useEffect, useState, useRef } from 'react'
-import Loader from 'react-loaders'
 import React from 'react';
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet'
 import emailjs from '@emailjs/browser'
-import AnimatedLetters from '../../components/AnimatedLetters'
 import "./index.module.scss"
-import Map from '../../components/Map'
+import dynamic from 'next/dynamic';
+// import MapWithLocation from '../../app/MapWithLocation';
+
+const MapWithLocation = dynamic(
+  () => import('../../app/MapWithLocation'),
+  {
+    ssr: false,
+    loading: () => (<div>loading...</div>),
+  }
+);
 
 const DEFAULT_CENTER = [42.3342, -71.1041]
 
@@ -42,11 +48,7 @@ export default function Contact() {
       <div className="container contact-page">
         <div className="text-zone">
           <h1>
-            <AnimatedLetters
-              letterClass={letterClass}
-              strArray={['C', 'o', 'n', 't', 'a', 'c', 't', ' ', 'm', 'e']}
-              idx={15}
-            />
+            Contact Me
           </h1>
           <p>
             I am interested in full time web development or data science positions in the Boston area. I am open to remote or contract work.
@@ -96,15 +98,9 @@ export default function Contact() {
           <span>gordenstein30@gmail.com</span>
         </div>
         <div className="map-wrap">
-          <Map  width="800" height="400" center={DEFAULT_CENTER} zoom={12}>
-            <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
-            <Marker position={[42.3132, -71.1141]}>
-              <Popup>Harry lives here, come over for a bike ride</Popup>
-            </Marker>
-          </Map>
+          <MapWithLocation/>
         </div>
       </div>
-      {/* <Loader type="ball-pulse-rise" /> */}
     </>
   )
 }
