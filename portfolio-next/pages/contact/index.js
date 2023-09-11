@@ -13,8 +13,6 @@ const MapWithLocation = dynamic(
   }
 );
 
-const DEFAULT_CENTER = [42.3342, -71.1041]
-
 export default function Contact() {
   const [letterClass, setLetterClass] = useState('text-animate')
   const form = useRef()
