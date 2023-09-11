@@ -1,23 +1,25 @@
 import { useState, useEffect } from 'react'
 import React from 'react';
-// import { Marker, Popup } from 'react-leaflet'
-const DynamicMap = dynamic(() => import('../Map/DynamicMap'), {
-    ssr: false
-  });
+import {TileLayer,  Marker, Popup } from 'react-leaflet'
+import DynamicMap from '../Map/DynamicMap'
+// const DynamicMap = dynamic(() => import('../Map/DynamicMap'), {
+//     ssr: false
+//   });
 
-const TileLayer = dynamic(
-    () => import('react-leaflet').then((m) => m.TileLayer),
-    { ssr: false }
-  );
 
-  const Marker = dynamic(
-    () => import('react-leaflet').then((m) => m.TileLayer),
-    { ssr: false }
-  );
-  const Popup = dynamic(
-    () => import('react-leaflet').then((m) => m.TileLayer),
-    { ssr: false }
-  );
+// const TileLayer = dynamic(
+//     () => import('react-leaflet').then((m) => m.TileLayer),
+//     { ssr: false }
+//   );
+
+//   const Marker = dynamic(
+//     () => import('react-leaflet').then((m) => m.TileLayer),
+//     { ssr: false }
+//   );
+//   const Popup = dynamic(
+//     () => import('react-leaflet').then((m) => m.TileLayer),
+//     { ssr: false }
+//   );
 
 
 const DEFAULT_WIDTH = 600;

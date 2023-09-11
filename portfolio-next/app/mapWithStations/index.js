@@ -1,20 +1,21 @@
 import { useState, useEffect } from 'react'
 import React from 'react';
+import {CircleMarker, Popup } from 'react-leaflet'
 // import { CircleMarker, Marker, Popup } from 'react-leaflet'
+import DynamicMap from '../Map/DynamicMap'
+// const DynamicMap = dynamic(() => import('../Map/DynamicMap'), {
+//     ssr: false
+//   });
 
-const DynamicMap = dynamic(() => import('../Map/DynamicMap'), {
-    ssr: false
-  });
 
-
-  const CircleMarker = dynamic(
-    () => import('react-leaflet').then((m) => m.TileLayer),
-    { ssr: false }
-  );
-  const Popup = dynamic(
-    () => import('react-leaflet').then((m) => m.TileLayer),
-    { ssr: false }
-  );
+  // const CircleMarker = dynamic(
+  //   () => import('react-leaflet').then((m) => m.TileLayer),
+  //   { ssr: false }
+  // );
+  // const Popup = dynamic(
+  //   () => import('react-leaflet').then((m) => m.TileLayer),
+  //   { ssr: false }
+  // );
 
 
 const checkEnvironment = () => {
