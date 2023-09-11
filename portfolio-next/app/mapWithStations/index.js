@@ -43,8 +43,7 @@ const MapWithStations = (props) => {
               {
                 stations.length === 0 || stations === undefined
                   ? <></>
-                  :
-                  stations.map(o =>
+                  : stations.map(o =>
                     <CircleMarker center={[o.latitude, o.longitude]} key={o.id} radius={5}>
                       <Popup content={o.name} />
                     </CircleMarker>
