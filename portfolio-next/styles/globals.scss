@@ -229,6 +229,17 @@ body {
       color: #fff;
     }
   }
+
+  .map-wrap {
+    position: absolute;
+    background: rgba(8, 253, 216, 0.1);
+    margin-top: 60px;
+    margin-left: 70px;
+    margin-right: 10px;
+    vertical-align: bottom;
+    width: 95%;
+    height: 95%;
+  }
 }
 
 

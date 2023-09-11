@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import React from 'react';
-// import { CircleMarker, Popup, TileLayer } from 'react-leaflet'
+import { CircleMarker, Popup, TileLayer } from 'react-leaflet'
 import DynamicMap from '../Map/DynamicMap'
 
 const checkEnvironment = () => {
@@ -35,7 +35,6 @@ const MapWithStations = (props) => {
     <div style={{ aspectRatio: width / height }}>
       <DynamicMap {...props} >
         <>
-          {({ TileLayer, CircleMarker, Popup }) => (
             <>
               <TileLayer
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
@@ -52,7 +51,6 @@ const MapWithStations = (props) => {
                   )
               }
             </>
-          )}
         </>
       </DynamicMap>
     </div>

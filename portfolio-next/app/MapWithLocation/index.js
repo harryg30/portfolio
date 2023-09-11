@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import React from 'react';
-import { TileLayer, Marker, Popup } from 'react-leaflet'
+// import { TileLayer, Marker, Popup } from 'react-leaflet'
 import DynamicMap from '../Map/DynamicMap'
 
 const DEFAULT_WIDTH = 600;
@@ -12,7 +12,7 @@ const MapWithLocation = (props) => {
     const { width = DEFAULT_WIDTH, height = DEFAULT_HEIGHT } = props;
     return (
         <div style='map-wrap'>
-            <DynamicMap center={DEFAULT_CENTER} zoom={12}>
+            <DynamicMap width={DEFAULT_WIDTH} height={DEFAULT_HEIGHT} center={DEFAULT_CENTER} zoom={12}>
                 <>
                     {({ TileLayer, Marker, Popup }) => (
                         <>
