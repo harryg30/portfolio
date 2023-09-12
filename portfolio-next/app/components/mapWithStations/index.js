@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react'
 import React from 'react';
 import Map from '../Map/DynamicMap'
+import Link from 'next/link';
 
 const checkEnvironment = () => {
   let base_url =
@@ -37,7 +38,9 @@ const MapWithStations = (props) => {
                 ? <></>
                 : stations.map(o =>
                   <CircleMarker center={[o.latitude, o.longitude]} key={o.id} radius={5}>
-                    <Popup content={o.name} />
+                    <Popup>
+                      <Link href={'/station/'+o.number}>{o.name}</Link>
+                    </Popup>
                   </CircleMarker>
                 )
             }

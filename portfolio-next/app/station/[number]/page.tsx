@@ -30,9 +30,9 @@ export async function generateStaticParams() {
 export default function Page({ params }) {
     const { number } = params
     return (
-        <div className="about-page">
+        <div className="container station-page">
             <div className="text-zone">
-                <h1>{number}</h1>
+                <p>{number}</p>
             </div>
         </div>
     )
