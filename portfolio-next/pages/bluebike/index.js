@@ -13,7 +13,7 @@ const MapWithStations = dynamic(
 
 const DEFAULT_CENTER = [42.3342, -71.1041]
 
-export default function BlueBike() {
+export default function BlueBike(props) {
     const [center, setCenter] = useState(DEFAULT_CENTER)
     const [zoom, setZoom] = useState(12)
 
@@ -23,9 +23,9 @@ export default function BlueBike() {
                 <div className='text-zone'>
                     <h1>BlueBike rider data</h1>
                 </div>
-                <div className='map-wrap'>
+                <div>
                     {center != undefined ?
-                        <MapWithStations width="800" height="400" center={center} zoom={zoom} />
+                        <MapWithStations center={center} zoom={zoom} props={props}/>
                         : <></>}
                 </div>
             </div>

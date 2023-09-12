@@ -27,7 +27,7 @@ const Map = ({ children, className, width, height, ...rest }) => {
 
   return (
     <MapContainer className={mapClassName} {...rest}>
-      {/* {children(ReactLeaflet, Leaflet)} */}
+      {children(ReactLeaflet, Leaflet)}
     </MapContainer>
   )
 }

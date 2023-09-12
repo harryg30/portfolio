@@ -1,7 +1,6 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import React from 'react';
-import { CircleMarker, Popup, TileLayer } from 'react-leaflet'
-import DynamicMap from '../Map/DynamicMap'
+import Map from '../Map/DynamicMap'
 
 const checkEnvironment = () => {
   let base_url =
@@ -20,7 +19,6 @@ const DEFAULT_WIDTH = 600;
 const DEFAULT_HEIGHT = 600;
 
 const MapWithStations = (props) => {
-  const { width = DEFAULT_WIDTH, height = DEFAULT_HEIGHT } = props;
   const [stations, setStations] = useState([])
 
   useEffect(() => {
@@ -29,29 +27,25 @@ const MapWithStations = (props) => {
       .then(data => setStations(data.stations))
   }, [])
 
-
-
   return (
-    <div style={{ aspectRatio: width / height }}>
-      <DynamicMap {...props} >
-        <>
-            <>
-              <TileLayer
-                url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                attribution="&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
-              />
-              {
-                stations.length === 0 || stations === undefined
-                  ? <></>
-                  : stations.map(o =>
-                    <CircleMarker center={[o.latitude, o.longitude]} key={o.id} radius={5}>
-                      <Popup content={o.name} />
-                    </CircleMarker>
-                  )
-              }
-            </>
-        </>
-      </DynamicMap>
+    <div className='map-wrap'>
+      <Map center={props.center} zoom={props.zoom} height={props.height} width={props.width} >
+        {({ TileLayer, CircleMarker, Popup }) => (
+          <>      <TileLayer attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors' url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+            {
+              stations.length === 0 || stations === undefined
+                ? <></>
+                : stations.map(o =>
+                  <CircleMarker center={[o.latitude, o.longitude]} key={o.id} radius={5}>
+                    <Popup content={o.name} />
+                  </CircleMarker>
+                )
+            }
+          </>
+
+        )}
+      </Map>
+
     </div>
   )
 }
