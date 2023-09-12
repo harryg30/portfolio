@@ -12,7 +12,8 @@ const checkEnvironment = () => {
 export async function generateStaticParams() {
     const stations = await fetch(checkEnvironment().concat('/api/getStations'), { method: 'GET' }).then((res) => res.json())
 
-    return Array.from(stations).map((station :{id:number,
+    return Array.from(stations).map((station: {
+        id: number,
         number: String,
         name: String,
         latitude: number,
@@ -20,7 +21,8 @@ export async function generateStaticParams() {
         district: String,
         public: Boolean,
         totalDocks: number,
-        deploymentYear: number}) => ({
+        deploymentYear: number
+    }) => ({
         number: station.number,
     }))
 }

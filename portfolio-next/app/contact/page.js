@@ -1,12 +1,12 @@
+"use client";
 import { useEffect, useState, useRef } from 'react'
 import React from 'react';
 import emailjs from '@emailjs/browser'
-import "./index.module.scss"
 import dynamic from 'next/dynamic';
 // import MapWithLocation from '../../app/MapWithLocation';
 
 const MapWithLocation = dynamic(
-  () => import('../../app/MapWithLocation'),
+  () => import('../components/MapWithLocation'),
   {
     ssr: false,
     loading: () => (<div>loading...</div>),
@@ -88,13 +88,13 @@ export default function Contact(props) {
             </form>
           </div>
         </div>
-        <div className="info-map">
+        {/* <div className="info-map">
           Harry Gordenstein
           <br />
           Boston MA, 02130
           <br />
           <span>gordenstein30@gmail.com</span>
-        </div>
+        </div> */}
       </div>
     </>
   )
