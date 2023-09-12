@@ -13,13 +13,16 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <div className="App">
-      <Sidebar />
-      <div className="page">
-      <main>{children}</main>
-      </div>
-    </div>
+    <html>
+    <body>
+        <div className="App">
+          <Sidebar />
+          <div className="page">
+            <main>{children}</main>
+          </div>
+        </div>
+    </body>
+    </html>
   )
 }
-
 

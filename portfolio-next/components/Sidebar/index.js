@@ -1,4 +1,3 @@
-import "./index.module.scss"
 import { useState } from 'react'
 import React from 'react';
 import Image from "next/image";
@@ -30,7 +29,7 @@ export default function Sidebar() {
         className="logo"
         href="/home"
         onClick={() => setShowNav(false)}>
-        <Image src={LogoS} alt="headshot" />
+        <Image src={LogoS} alt="headshot" className='logo'/>
         {/* <img className="sub-logo" src={LogoSubtitle} alt="Harry" /> */}
       </Link>
       <nav className={showNav ? 'mobile-show' : ''}>
@@ -70,12 +69,6 @@ export default function Sidebar() {
         >
           <FontAwesomeIcon icon={faEnvelope} color="#4d4d4e" />
         </Link>
-        {/* <FontAwesomeIcon 
-          onClick={() => setShowNav(false)}
-          icon={faClose}
-          color="#ff5100"
-          size="3x"
-          className='close-icon' /> */}
       </nav>
       <ul>
         <li>
@@ -118,12 +111,6 @@ export default function Sidebar() {
           </a>
         </li>
       </ul>
-      {/* <FontAwesomeIcon 
-          onClick={() => setShowNav(true)}
-          icon={faBars}
-          color="#ff5100"
-          size="3x"
-          className='hamburger-icon' /> */}
     </div>
   )
 }
