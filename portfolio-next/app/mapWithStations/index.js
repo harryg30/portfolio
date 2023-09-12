@@ -6,7 +6,7 @@ const checkEnvironment = () => {
   let base_url =
     process.env.NODE_ENV === "development"
       ? "http://localhost:3000"
-      : "https://www.hgordenstein.com"; // https://v2ds.netlify.app
+      : "https://www.hgordenstein.com"; 
 
   return base_url;
 };
