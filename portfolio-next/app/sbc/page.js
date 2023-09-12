@@ -1,20 +1,14 @@
-import { useEffect, useState, useRef } from 'react'
 import React from 'react';
 import Image from 'next/image'
-import AnimatedLetters from '../../components/AnimatedLetters'
 import sbc from '../../assets/images/sbc.jpg'
 
 export default function Sbc() {
-    const [letterClass, setLetterClass] = useState('text-animate')
     return (
         <>
             <div className="container sbc-page">
                 <div className="text-zone">
                     <h1>
-                        <AnimatedLetters
-                            letterClass={letterClass}
-                            strArray={"Single Board Computer Projects".split("")}
-                        />
+                    "Single Board Computer Projects"
                     </h1>
                     <div>
                         <b>E-Ink discord bot</b>

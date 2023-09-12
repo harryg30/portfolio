@@ -1,3 +1,4 @@
+"use client";
 import { useEffect, useState, useRef } from 'react'
 import React from 'react';
 import emailjs from '@emailjs/browser'
@@ -6,7 +7,7 @@ import dynamic from 'next/dynamic';
 // import MapWithLocation from '../../app/MapWithLocation';
 
 const MapWithLocation = dynamic(
-  () => import('../../app/MapWithLocation'),
+  () => import('../MapWithLocation'),
   {
     ssr: false,
     loading: () => (<div>loading...</div>),

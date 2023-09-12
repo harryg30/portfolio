@@ -1,10 +1,12 @@
+"use client";
+
 import { useEffect, useState, useRef } from 'react'
 import React from 'react';
 import dynamic from 'next/dynamic';
-// import MapWithStations from '../../app/mapWithStations';
+
 
 const MapWithStations = dynamic(
-    () => import('../../app/mapWithStations'),
+    () => import('../components/mapWithStations'),
     {
         ssr: false,
         loading: () => (<div>loading...</div>),

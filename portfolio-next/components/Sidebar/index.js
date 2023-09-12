@@ -30,7 +30,7 @@ export default function Sidebar() {
         className="logo"
         href="/home"
         onClick={() => setShowNav(false)}>
-        <Image src={LogoS} alt="headshot" width="80" height="80"  />
+        <Image src={LogoS} alt="headshot" />
         {/* <img className="sub-logo" src={LogoSubtitle} alt="Harry" /> */}
       </Link>
       <nav className={showNav ? 'mobile-show' : ''}>
