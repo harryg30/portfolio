@@ -13,9 +13,7 @@ const MapWithLocation = dynamic(
   }
 );
 
-const DEFAULT_CENTER = [42.3342, -71.1041]
-
-export default function Contact() {
+export default function Contact(props) {
   const [letterClass, setLetterClass] = useState('text-animate')
   const form = useRef()
 
@@ -96,9 +94,6 @@ export default function Contact() {
           Boston MA, 02130
           <br />
           <span>gordenstein30@gmail.com</span>
-        </div>
-        <div className="map-wrap">
-          <MapWithLocation/>
         </div>
       </div>
     </>
