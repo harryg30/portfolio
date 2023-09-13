@@ -44,21 +44,13 @@ export default function About() {
             Spearheaded the development of new ServiceNow dashboards designed to close gaps and increase the performance of sales and IT team workflows.
           </p>
           <h1>
-            <AnimatedLetters
-              letterClass={letterClass}
-              strArray={['S', 'k', 'i', 'l', 'l', 's']}
-              idx={15}
-            />
+            Skills
           </h1>
           <p>
             JavaScript (React) | Python (Flask) | Java | Hibernate | SQL | Scala | RESTful APIs | TypeScript | Spark | MongoDB | HDFS | Git | Jenkins | Docker | Jira | CI/CD | Pip | npm | UX/UI | Airflow | HTML | CSS | Apache | PostMan |
           </p>
           <h1>
-            <AnimatedLetters
-              letterClass={letterClass}
-              strArray={['E', 'd', 'u', 'c', 'a', 't', 'i', 'o', 'n']}
-              idx={15}
-            />
+            Education
           </h1>
           <b>Bachelor of Science in Computer Science| Wentworth Institute of Technology, Boston, MA, 2016-2020</b>
           <p>
