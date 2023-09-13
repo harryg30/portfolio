@@ -15,7 +15,7 @@ const MapWithStations = (props) => {
   const [stations, setStations] = useState([])
 
   useEffect(() => {
-    fetch(checkEnvironment().concat('/api/getStations'), { method: 'GET' })
+    fetch(checkEnvironment().concat('/api/getAllStations'), { method: 'GET' })
       .then(resp => resp.json())
       .then(data => setStations(data.stations))
   }, [])

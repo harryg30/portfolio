@@ -9,7 +9,11 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     }else{
         const stationId = await prisma.station.findFirst({where: {number: stationNo?.valueOf()}, select:{id:true} })
         const rideRelation = await prisma.startingStation.findMany({where: {stationId: stationId?.id}, select:{ rideId: true}})
-        const rides = await prisma.ride.findMany({where: {id: {in: rideRelation.map((r) => r.rideId)}}, include: {startingStation:{where:{stationId: stationId?.id}, select:{station:true}}, endingStation:{select:{station:true}}}})
+        const rides = await prisma.ride.findMany(
+            {where: {id: {in: rideRelation.map((r) => r.rideId)}}, 
+            include: {startingStation:{where:{stationId: stationId?.id}, select:{station:true}}, 
+                    endingStation:{select:{station:true}}}, 
+            orderBy:{startTime: 'asc'}})
 
     if(rides.length === 0){
         return res.status(501).json({message: 'No Stations'})

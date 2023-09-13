@@ -1,4 +1,5 @@
 "use client";
+import { useEffect, useState } from 'react';
 import checkEnvironment from '../../../components/checkEnv';
 import StartTable from './StartTable';
 
@@ -21,11 +22,32 @@ export async function generateStaticParams() {
 
 export default function Page({params}) {
     const { number } = params
+    const [station, setStation] = useState({
+        id: undefined,
+        number: undefined,
+        name: undefined,
+        latitude: undefined,
+        longitude: undefined,
+        district: undefined,
+        public: undefined,
+        totalDocks: undefined,
+        deploymentYear: undefined
+    })
 
-    return (
+    useEffect(() => {
+        fetch(checkEnvironment().concat('/api/getStation?stationNo=',number), { method: 'GET' })
+            .then(resp => resp.json())
+            .then(data => setStation(data.station))
+    }, [])
+
+
+
+        return (
         <div className="container station-page">
             <div className="text-zone">
-                <p>{number}</p>
+                <p>{station.name}</p>
+            </div>
+            <div className='chart-zone'>
                 <StartTable number={number}/>
             </div>
         </div>

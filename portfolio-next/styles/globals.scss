@@ -165,18 +165,17 @@ body {
     font-weight: 400;
     margin-top: 0;
     position: relative;
-    margin-bottom: 40px;
     left: -10px;
   }
   p {
-    font-size: 30px;
+    font-size: 20px;
     font-family: 'Coolvetica';
     color: #ff5100;
     font-weight: 400;
     margin-top: 0;
     position: relative;
-    margin-bottom: 40px;
-    left: -10px;
+    left: 50px;
+
   }
 
   .text-zone {
@@ -189,6 +188,19 @@ body {
     display: table-cell;
     max-height: 90%;
     max-width: 30%;
+  }
+  .chart-zone {
+    position: absolute;
+    left: 5%;
+    top: 20%;
+    width: 40%;
+    vertical-align: top;
+    display: table-cell;
+
+    p{
+      margin-right: auto;
+      margin-left: auto;
+    }
   }
 
 }
