@@ -7,10 +7,10 @@ export default function StartTable(props){
     useEffect(() => {
         fetch(checkEnvironment().concat('/api/ridesFromStation?stationNo=',props.number), { method: 'GET' })
           .then(resp => resp.json())
-          .then(data => setRides(data.rides))
+          .then(data => setRides(data))
       }, [])
 
-      console.log(rides)
+    console.log(rides)
       return(
         <>
         </>
