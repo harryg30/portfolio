@@ -2,15 +2,7 @@ import { useState, useEffect, useRef } from 'react'
 import React from 'react';
 import Map from '../Map/DynamicMap'
 import Link from 'next/link';
-
-const checkEnvironment = () => {
-  let base_url =
-    process.env.NODE_ENV === "development"
-      ? "http://localhost:3000"
-      : "https://www.hgordenstein.com"; 
-
-  return base_url;
-};
+import checkEnvironment from '../../../components/checkEnv';
 
 
 // Set default sizing to control aspect ratio which will scale responsively
