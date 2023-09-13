@@ -41,7 +41,7 @@ export default function StartTable(props) {
 
     return (
         <div > 
-            <p>Number of rides leaveing the station by date</p>
+            <p>Number of rides leaving the station by date</p>
             <LineChart width={600} height={300} data={cleanRides(rides)}>
                 <Line type="monotone" dataKey="count" stroke="#8884d8" />
                 <CartesianGrid stroke="#ccc" />
