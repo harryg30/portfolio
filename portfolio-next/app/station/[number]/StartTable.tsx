@@ -1,13 +1,13 @@
 import { useEffect, useState } from "react"
 import checkEnvironment from "../../../components/checkEnv"
 import { LineChart, Line, CartesianGrid, XAxis, YAxis } from 'recharts';
+import * as d3 from "d3";
 
 
 function cleanRides(rides) {
     const dateCounts: { day: number; date: Date; count: number; }[] = []
     for (const r in rides) {
         const startTime = new Date(rides[r].startTime)
-        const startDay =
             dateCounts.push({ day: startTime.getDay(), date: startTime, count: 1 })
     }
 
