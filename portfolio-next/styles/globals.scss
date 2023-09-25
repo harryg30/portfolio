@@ -192,8 +192,8 @@ body {
   .chart-zone {
     position: absolute;
     left: 5%;
-    top: 10%;
-    width: 40%;
+    top: 6%;
+    width: 100%;
     vertical-align: top;
     display: table-cell;
 
@@ -203,6 +203,12 @@ body {
     }
     svg{
       background-color: rgb(32, 32, 32);
+      vertical-align: top;
+      margin-right: 1%;
+      margin-left: auto;
+    }
+    .x-axis-label {
+      cursor: pointer; /* Set the cursor style to pointer */
     }
   }
 
