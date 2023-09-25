@@ -89,6 +89,7 @@ export default function DeparturesByDay({
             .attr("dy", "0.35em")
             .attr("x", d => x(d.date))
             .attr("y", d => y(d.count))
+            .attr("class", "clickable-label")
             .attr("font-size", 10)
             .attr("data-date", (d) => d.date) // Store the date in a data attribute
             .on("click", handleInlineCountClick) // Add click event listener here
