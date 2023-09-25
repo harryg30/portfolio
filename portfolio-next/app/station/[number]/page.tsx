@@ -54,7 +54,6 @@ export default function Page({params}) {
                 <p>{station.name}</p>
             </div>
             <div className='chart-zone'>
-            <p>Number of rides leaving the station by date</p>
                 <DeparturesByDay data={cleanRides(rides)}/>
             </div>
         </div>
@@ -72,12 +71,12 @@ function cleanRides(rides) {
     const results = {}
     for (const row in dateCounts) {
         const day = dateCounts[row].day
-        const date = dateCounts[row].date.toDateString()
+        const date = dateCounts[row].date.toLocaleDateString()
 
         if (!results[day]) {
-            results[day] = { date: date, count: 1 }
+            results[day] = { date: new Date(date), count: 1 }
         } else {
-            results[day] = { date: date, count: results[day].count + 1 }
+            results[day] = { date: new Date(date), count: results[day].count + 1 }
         }
     }
     const ret: any[] = []
