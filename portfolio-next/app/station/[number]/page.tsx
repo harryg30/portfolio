@@ -4,7 +4,7 @@ import checkEnvironment from '../../../components/checkEnv';
 import StartTable from './StartTable';
 import DeparturesByDay from './DeparturesByDay';
 
-import {Ride, Station} from '../../../pages/api/db'
+import { Ride, Station } from '../../../pages/api/db'
 
 export async function generateStaticParams() {
     const stations = await fetch(checkEnvironment().concat('/api/getStations'), { method: 'GET' }).then((res) => res.json())
@@ -13,7 +13,7 @@ export async function generateStaticParams() {
     }))
 }
 
-export default function Page({params}) {
+export default function Page({ params }) {
     const { number } = params
     const [station, setStation] = useState({
         id: undefined,
@@ -27,59 +27,68 @@ export default function Page({params}) {
         deploymentYear: undefined
     })
     const [rides, setRides] = useState([])
-    
+
     useEffect(() => {
-        fetch(checkEnvironment().concat('/api/getStation?stationNo=',number), { method: 'GET' })
+        fetch(checkEnvironment().concat('/api/getStation?stationNo=', number), { method: 'GET' })
             .then(resp => resp.json())
             .then(data => setStation(data.station))
     }, [])
 
     useEffect(() => {
-        fetch(checkEnvironment().concat('/api/ridesFromStation?stationNo=',number), { method: 'GET' })
+        fetch(checkEnvironment().concat('/api/ridesFromStation?stationNo=', number), { method: 'GET' })
             .then(resp => resp.json())
             .then(data => setRides(data.rides))
     }, [])
 
-        return (
+    return (
         <div className="container station-page">
             <div className="text-zone">
                 <p>{station.name}</p>
             </div>
             <div className='chart-zone'>
-                <DeparturesByDay data={cleanRides(rides)} destinations={destinationsByDay(rides)}/>
+                <DeparturesByDay data={cleanRides(rides)} destinations={destinationsByDay(rides)} />
             </div>
         </div>
     )
 }
 
-function destinationsByDay(rides: Ride[]): Map<Date, Map<string, number>> {
+function formatDate(date) {
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    const year = date.getFullYear();
+    return `${month}/${day}/${year}`;
+}
+
+function destinationsByDay(rides) {
     const groupedData = rides.reduce((result, ride) => {
-      const startDate = new Date(ride.startTime);
-      const endingStation = ride.endingStation[0].station;
-  
-      if (!result.has(startDate)) {
-        result.set(startDate, new Map<string, number>());
-      }
-  
-      const dateMap = result.get(startDate) || new Map<string, number>(); // Ensure dateMap is initialized
-  
-      if (!dateMap.has(endingStation.number)) {
-        dateMap.set(endingStation.number, 1);
-      } else {
-        dateMap.set(endingStation.number, dateMap.get(endingStation.number)! + 1);
-      }
-  
-      return result;
-    }, new Map<Date, Map<string, number>>());
-  
+        const startDate = new Date(ride.startTime);
+        startDate.setHours(0, 0, 0, 0);
+        const endingStation = ride.endingStation[0].station;
+        const formattedDate = formatDate(startDate);
+
+        if (!result.has(formattedDate)) {
+            result.set(formattedDate, new Map());
+        }
+
+        const dateMap = result.get(formattedDate) || new Map();
+
+        if (!dateMap.has(endingStation.number)) {
+            dateMap.set(endingStation.number, 1);
+        } else {
+            dateMap.set(endingStation.number, dateMap.get(endingStation.number) + 1);
+        }
+
+        return result;
+    }, new Map());
+
     return groupedData;
-  }
+}
 
 function cleanRides(rides) {
     const dateCounts: { day: number; date: Date; count: number; }[] = []
     for (const r in rides) {
         const startTime = new Date(rides[r].startTime)
-            dateCounts.push({ day: startTime.getDay(), date: startTime, count: 1 })
+        dateCounts.push({ day: startTime.getDay(), date: startTime, count: 1 })
     }
 
     const results = {}

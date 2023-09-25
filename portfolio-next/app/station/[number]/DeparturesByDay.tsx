@@ -56,30 +56,46 @@ export default function DeparturesByDay({
         .attr("stroke", "steelblue")
         .attr("stroke-width", 1.5)
         .attr("d", line(data));
+
+
+
+    function formatDate(date) {
+        const month = String(date.getMonth() + 1).padStart(2, '0');
+        const day = String(date.getDate()).padStart(2, '0');
+        const year = date.getFullYear();
+        return `${month}/${day}/${year}`;
+    }
+
+    // Function to handle the click event on inline counts
+    const handleInlineCountClick = (event) => {
+        // Retrieve the date from the data attribute
+        const clickedDate = formatDate(new Date( event.target.getAttribute("data-date") ));
+        console.log(destinations.get(clickedDate))
+    };
+
     // inline counts
     svg.append("g")
         .attr("stroke-linecap", "round")
         .attr("stroke-linejoin", "round")
         .attr("text-anchor", "middle")
-      .selectAll()
-      .data(data)
-      .join("text")
+        .selectAll()
+        .data(data)
+        .join("text")
         .text(d => d.count)
         .attr("dy", "0.35em")
         .attr("x", d => x(d.date))
         .attr("y", d => y(d.count))
         .attr("font-size", 10)
+        .attr("data-date", (d) => d.date) // Store the date in a data attribute
+        .on("click", handleInlineCountClick) // Add click event listener here
         .clone(true).lower()
         .attr("fill", "none")
         .attr("stroke", "white")
         .attr("stroke-width", 4);
 
-    
-
-
-
     return (
         <svg id="departChart" />
+        
     )
 }
 
