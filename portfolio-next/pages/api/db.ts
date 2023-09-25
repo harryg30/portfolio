@@ -1,5 +1,28 @@
 import { PrismaClient } from '@prisma/client'
 
+export interface Ride {
+  id: number;
+  startTime: string;
+  endTime: string;
+  member: boolean;
+  bikeId: number;
+  startingStation: { station: Station }[];
+  endingStation: { station: Station }[];
+}
+
+export interface Station {
+  id: number;
+  number: string;
+  name: string;
+  latitude: number;
+  longitude: number;
+  district: string;
+  public: boolean;
+  totalDocks: number;
+  deploymentYear: number;
+}
+
+
 const prismaClientSingleton = () => {
   return new PrismaClient()
 }

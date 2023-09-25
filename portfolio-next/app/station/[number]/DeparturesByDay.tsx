@@ -3,6 +3,7 @@ import * as d3 from "d3";
 
 export default function DeparturesByDay({
     data,
+    destinations,
     width = 500,
     height = 270,
     marginTop = 30,
@@ -72,6 +73,9 @@ export default function DeparturesByDay({
         .attr("fill", "none")
         .attr("stroke", "white")
         .attr("stroke-width", 4);
+
+    
+
 
 
     return (

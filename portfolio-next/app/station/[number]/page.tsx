@@ -4,19 +4,11 @@ import checkEnvironment from '../../../components/checkEnv';
 import StartTable from './StartTable';
 import DeparturesByDay from './DeparturesByDay';
 
+import {Ride, Station} from '../../../pages/api/db'
+
 export async function generateStaticParams() {
     const stations = await fetch(checkEnvironment().concat('/api/getStations'), { method: 'GET' }).then((res) => res.json())
-    return Array.from(stations).map((station: {
-        id: number,
-        number: String,
-        name: String,
-        latitude: number,
-        longitude: number,
-        district: String,
-        public: Boolean,
-        totalDocks: number,
-        deploymentYear: number
-    }) => ({
+    return Array.from(stations).map((station: Station) => ({
         number: station.number
     }))
 }
@@ -54,12 +46,34 @@ export default function Page({params}) {
                 <p>{station.name}</p>
             </div>
             <div className='chart-zone'>
-                <DeparturesByDay data={cleanRides(rides)}/>
+                <DeparturesByDay data={cleanRides(rides)} destinations={destinationsByDay(rides)}/>
             </div>
         </div>
     )
 }
 
+function destinationsByDay(rides: Ride[]): Map<Date, Map<string, number>> {
+    const groupedData = rides.reduce((result, ride) => {
+      const startDate = new Date(ride.startTime);
+      const endingStation = ride.endingStation[0].station;
+  
+      if (!result.has(startDate)) {
+        result.set(startDate, new Map<string, number>());
+      }
+  
+      const dateMap = result.get(startDate) || new Map<string, number>(); // Ensure dateMap is initialized
+  
+      if (!dateMap.has(endingStation.number)) {
+        dateMap.set(endingStation.number, 1);
+      } else {
+        dateMap.set(endingStation.number, dateMap.get(endingStation.number)! + 1);
+      }
+  
+      return result;
+    }, new Map<Date, Map<string, number>>());
+  
+    return groupedData;
+  }
 
 function cleanRides(rides) {
     const dateCounts: { day: number; date: Date; count: number; }[] = []
