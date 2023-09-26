@@ -1,10 +1,12 @@
 import * as d3 from "d3";
 import Destinations from "./Destinations";
 import { useEffect, useState } from "react";
+import BikeBreakdown from "./BikeBreakdown";
 
 export default function DeparturesByDay({
     data,
     destinations,
+    bikes,
     width = 500,
     height = 270,
     marginTop = 40,
@@ -135,6 +137,7 @@ export default function DeparturesByDay({
         <>
             <svg id="departChart" />
             <Destinations data={destList} selectedDate={selectedDate} />
+            <BikeBreakdown data={bikes} /> 
         </>
 
     )

@@ -46,7 +46,7 @@ export default function Page({ params }) {
                 <p>{station.name}</p>
             </div>
             <div className='chart-zone'>
-                <DeparturesByDay data={cleanRides(rides)} destinations={destinationsByDay(rides)} />
+                <DeparturesByDay data={cleanRides(rides)} destinations={destinationsByDay(rides)} bikes={getBikeData(rides)} />
             </div>
         </div>
     )
@@ -109,4 +109,22 @@ function cleanRides(rides) {
 
 
     return ret
+}
+
+function getBikeData(rides: Ride[]): Map<number, number> {
+    const bikeIdCountMap = new Map<number, number>();
+
+    for (const ride of rides) {
+        const { bikeId } = ride;
+
+        if (bikeIdCountMap.has(bikeId)) {
+            // Increment the count if the bikeId is already in the map
+            bikeIdCountMap.set(bikeId, bikeIdCountMap.get(bikeId)! + 1);
+        } else {
+            // Initialize the count to 1 if the bikeId is not in the map
+            bikeIdCountMap.set(bikeId, 1);
+        }
+    }
+
+    return bikeIdCountMap;
 }

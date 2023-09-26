@@ -2,29 +2,21 @@ import React, { useEffect } from "react";
 import * as d3 from "d3";
 import { useRouter } from 'next/navigation';
 
-export default function Destinations({
+export default function BikeBreakdown({
     data,
-    selectedDate,
     width = 500,
     height = 270,
     marginTop = 40,
     marginRight = 20,
-    marginBottom = 60, // Increase margin to accommodate rotated labels and y-axis labels
-    marginLeft = 40, // Increase margin to accommodate y-axis labels
-}) {
+    marginBottom = 60,
+    marginLeft = 60, // Increased marginLeft for rotated labels
+}) { 
     const router = useRouter();
-    const title = selectedDate ? "Top destinations on " + selectedDate : "Select a data point from the line chart";
-
-    const handleXLabelClick = (label) => {
-        // Handle the click event for x-axis labels
-        router.push(label);
-        console.log("Clicked label:", label);
-        // You can perform any custom action here based on the clicked label.
-    };
-
+    const title = "Top 25 Bikes at the Station";
+    
     useEffect(() => {
         // Clear the previous chart
-        d3.select("#destinations").selectAll("*").remove();
+        d3.select("#bikes").selectAll("*").remove();
 
         // Check if data is empty
         if (data.size === 0) {
@@ -34,17 +26,20 @@ export default function Destinations({
         // Sort the data in descending order by value
         const sortedData = [...data.entries()].sort((a, b) => b[1] - a[1]);
 
-        const svg = d3.select("#destinations");
+        // Filter to only include the top 25 bikes
+        const top25Data = sortedData.slice(0, 25);
+
+        const svg = d3.select("#bikes");
 
         const xScale = d3
             .scaleBand()
-            .domain(sortedData.map(d => d[0]))
+            .domain(top25Data.map(d => d[0]))
             .range([0, width - marginLeft - marginRight])
-            .padding(0.1);
+            .padding(0.2); // Increased padding for wider bars
 
         const yScale = d3
             .scaleLinear()
-            .domain([0, d3.max(sortedData.map(d => d[1]))])
+            .domain([0, d3.max(top25Data.map(d => d[1]))])
             .nice()
             .range([height - marginTop - marginBottom, 0]);
 
@@ -52,9 +47,9 @@ export default function Destinations({
             .append("g")
             .attr("transform", `translate(${marginLeft},${marginTop})`);
 
-        // Create bars
+        // Create bars without rounded corners
         g.selectAll("rect")
-            .data(sortedData)
+            .data(top25Data)
             .enter()
             .append("rect")
             .attr("x", d => xScale(d[0]))
@@ -92,8 +87,8 @@ export default function Destinations({
             .attr("y", height - 10)
             .attr("text-anchor", "middle")
             .attr("fill", "white")
-            .attr("font-size", 10)
-            .text("Station");
+            .attr("font-size", 12)
+            .text("Bike");
 
         // Add y-axis label
         svg
@@ -103,19 +98,21 @@ export default function Destinations({
             .attr("transform", "rotate(-90)")
             .attr("fill", "white")
             .attr("text-anchor", "middle")
-            .attr("font-size", 10)
+            .attr("font-size", 12)
             .text("Rides");
 
         // Add chart title
         svg
             .append("text")
             .attr("x", width / 2)
-            .attr("y", marginTop / 2) // Adjusted position
+            .attr("y", marginTop / 2)
             .attr("text-anchor", "middle")
             .attr("fill", "white")
-            .attr("font-size", "1.5em") // Adjust font size
+            .attr("font-size", "1.5em")
             .text(title);
     }, [data, height, width, marginLeft, marginTop, marginRight, marginBottom, title]);
 
-    return <svg id="destinations" width={width} height={height} />;
+    return (
+        <svg id="bikes" width={width} height={height} />
+    );
 }
