@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import * as d3 from "d3";
-import { useRouter } from 'next/navigation'
+import { useRouter } from 'next/navigation';
+
 export default function Destinations({
     data,
     selectedDate,
@@ -11,18 +12,17 @@ export default function Destinations({
     marginBottom = 40,
     marginLeft = 40
 }) {
-    const router = useRouter()
-    const title = selectedDate ? "Top destinations on " + selectedDate : "select a data point from the line chart"
+    const router = useRouter();
+    const title = selectedDate ? "Top destinations on " + selectedDate : "Select a data point from the line chart";
 
     const handleXLabelClick = (label) => {
         // Handle the click event for x-axis labels
-        router.push(label)
+        router.push(label);
         console.log("Clicked label:", label);
         // You can perform any custom action here based on the clicked label.
     };
 
     useEffect(() => {
-        console.log(data)
         // Clear the previous chart
         d3.select("#destinations").selectAll("*").remove();
 
@@ -31,17 +31,20 @@ export default function Destinations({
             return;
         }
 
+        // Sort the data in descending order by value
+        const sortedData = [...data.entries()].sort((a, b) => b[1] - a[1]);
+
         const svg = d3.select("#destinations");
 
         const xScale = d3
             .scaleBand()
-            .domain([...data.keys()])
+            .domain(sortedData.map(d => d[0]))
             .range([0, width - marginLeft - marginRight])
             .padding(0.1);
 
         const yScale = d3
             .scaleLinear()
-            .domain([0, d3.max([...data.values()])])
+            .domain([0, d3.max(sortedData.map(d => d[1]))])
             .nice()
             .range([height - marginTop - marginBottom, 0]);
 
@@ -51,7 +54,7 @@ export default function Destinations({
 
         // Create bars
         g.selectAll("rect")
-            .data([...data.entries()])
+            .data(sortedData)
             .enter()
             .append("rect")
             .attr("x", d => xScale(d[0]))
