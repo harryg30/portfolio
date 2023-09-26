@@ -135,9 +135,17 @@ export default function DeparturesByDay({
     }, [data]);
     return (
         <>
-            <svg id="departChart" />
-            <Destinations data={destList} selectedDate={selectedDate} />
-            <BikeBreakdown data={bikes} /> 
+            <div className="grid-item">
+                <svg id="departChart" />
+            </div>
+            <div className="grid-item">
+                <Destinations data={destList} selectedDate={selectedDate} />
+            </div>
+            <div className="grid-item">
+                <BikeBreakdown data={bikes} />
+            </div>
+
+
         </>
 
     )

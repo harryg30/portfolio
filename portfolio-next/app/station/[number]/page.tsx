@@ -1,13 +1,21 @@
 "use client";
 import { useEffect, useState } from 'react';
 import checkEnvironment from '../../../components/checkEnv';
-import StartTable from './StartTable';
 import DeparturesByDay from './DeparturesByDay';
-
 import { Ride, Station } from '../../../pages/api/db'
 
+
+import dynamic from 'next/dynamic';
+const MapWithStations = dynamic(
+    () => import('../../components/mapWithStations'),
+    {
+        ssr: false,
+        loading: () => (<div>loading...</div>),
+    }
+);
+
 export async function generateStaticParams() {
-    const stations = await fetch(checkEnvironment().concat('/api/getStations'), { method: 'GET' }).then((res) => res.json())
+    const stations = await fetch(checkEnvironment().concat('/api/getAllStations'), { method: 'GET' }).then((res) => res.json())
     return Array.from(stations).map((station: Station) => ({
         number: station.number
     }))
@@ -16,22 +24,23 @@ export async function generateStaticParams() {
 export default function Page({ params }) {
     const { number } = params
     const [station, setStation] = useState({
-        id: undefined,
-        number: undefined,
-        name: undefined,
-        latitude: undefined,
-        longitude: undefined,
-        district: undefined,
-        public: undefined,
-        totalDocks: undefined,
-        deploymentYear: undefined
-    })
+        id: 999,
+        number: "undefined",
+        name: "undefined",
+        latitude: 0,
+        longitude: 0,
+        district: "undefined",
+        public: false,
+        totalDocks: 0,
+        deploymentYear: 0
+    } as Station)
     const [rides, setRides] = useState([])
 
     useEffect(() => {
         fetch(checkEnvironment().concat('/api/getStation?stationNo=', number), { method: 'GET' })
             .then(resp => resp.json())
-            .then(data => setStation(data.station))
+            // .then(r => console.log(r))
+           .then(data => setStation(data.station))
     }, [])
 
     useEffect(() => {
@@ -39,13 +48,18 @@ export default function Page({ params }) {
             .then(resp => resp.json())
             .then(data => setRides(data.rides))
     }, [])
-
+    console.log(station)
     return (
         <div className="container station-page">
             <div className="text-zone">
                 <p>{station.name}</p>
             </div>
             <div className='chart-zone'>
+                <div className='grid-item'>
+                    {station.latitude != undefined ?
+                        <MapWithStations center={[station.latitude, station.longitude]} zoom={14}/>
+                        : <></>}
+                </div>
                 <DeparturesByDay data={cleanRides(rides)} destinations={destinationsByDay(rides)} bikes={getBikeData(rides)} />
             </div>
         </div>
