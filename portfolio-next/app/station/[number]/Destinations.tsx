@@ -9,8 +9,8 @@ export default function Destinations({
     height = 270,
     marginTop = 40,
     marginRight = 20,
-    marginBottom = 40,
-    marginLeft = 40
+    marginBottom = 60, // Increase margin to accommodate rotated labels and y-axis labels
+    marginLeft = 40, // Increase margin to accommodate y-axis labels
 }) {
     const router = useRouter();
     const title = selectedDate ? "Top destinations on " + selectedDate : "Select a data point from the line chart";
@@ -63,21 +63,26 @@ export default function Destinations({
             .attr("height", d => height - marginTop - marginBottom - yScale(d[1]))
             .attr("fill", "steelblue");
 
-        // Create x-axis
-        g.append("g")
+        // Create x-axis with rotated labels
+        const xAxis = g.append("g")
             .attr("class", "x-axis")
             .attr("transform", `translate(0,${height - marginTop - marginBottom})`)
-            .call(d3.axisBottom(xScale));
+            .call(d3.axisBottom(xScale))
+            .selectAll("text")
+            .style("text-anchor", "end")
+            .attr("dx", "-0.5em")
+            .attr("dy", "0.15em")
+            .attr("transform", "rotate(-45)");
 
-        // Create y-axis with integer values
+        // Add click event listener to x-axis labels
+        xAxis
+            .attr("class", "clickable-label")
+            .on("click", (event, label) => router.push(label));
+
+        // Create y-axis
         g.append("g")
             .attr("class", "y-axis")
-            .call(
-                d3
-                    .axisLeft(yScale)
-                    .ticks(5)
-                    .tickFormat(d3.format("d")) // Display integer values
-            );
+            .call(d3.axisLeft(yScale).ticks(5).tickFormat(d3.format("d")));
 
         // Add x-axis label
         svg
@@ -86,17 +91,8 @@ export default function Destinations({
             .attr("y", height - 10)
             .attr("text-anchor", "middle")
             .attr("fill", "white")
+            .attr("font-size", 10)
             .text("Station");
-
-        // Create x-axis
-        const xAxis = g.append("g")
-            .attr("class", "x-axis")
-            .attr("transform", `translate(0,${height - marginTop - marginBottom})`)
-            .call(d3.axisBottom(xScale));
-        // Add click event listener to x-axis labels
-        xAxis.selectAll(".tick text")
-            .attr("class", "clickable-label")
-            .on("click", (event, label) => router.push(label));
 
         // Add y-axis label
         svg
@@ -106,7 +102,8 @@ export default function Destinations({
             .attr("transform", "rotate(-90)")
             .attr("fill", "white")
             .attr("text-anchor", "middle")
-            .text("Weight");
+            .attr("font-size", 10)
+            .text("Rides");
 
         // Add chart title
         svg

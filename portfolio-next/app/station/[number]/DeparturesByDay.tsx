@@ -7,10 +7,10 @@ export default function DeparturesByDay({
     destinations,
     width = 500,
     height = 270,
-    marginTop = 30,
-    marginRight = 20,
-    marginBottom = 20,
-    marginLeft = 20
+    marginTop = 40,
+    marginRight = 30,
+    marginBottom = 35,
+    marginLeft = 35
 }) {
     const [destList, setDestList] = useState([])
     const [selectedDate, setSelectedDate] = useState("")
@@ -61,6 +61,39 @@ export default function DeparturesByDay({
             .attr("stroke-width", 1.5)
             .attr("d", line(data));
 
+
+        // Add the x-axis title.
+        svg.append("text")
+            .attr("x", width / 2)
+            .attr("y", height - 5)
+            .attr("text-anchor", "middle")
+            .attr("font-size", 10)
+            .attr("fill", "white")
+            .text("Date");
+
+        // Add the y-axis title.
+        svg.append("text")
+            .attr("transform", "rotate(-90)")
+            .attr("x", -height / 2)
+            .attr("y", 10)
+            .attr("text-anchor", "middle")
+            .attr("font-size", 10)
+            .attr("fill", "white")
+            .text("Number of Rides");
+
+        // Add the x-axis.
+        svg.append("g")
+            .attr("transform", `translate(0,${height - marginBottom})`)
+            .call(d3.axisBottom(x).ticks(width / 80).tickSizeOuter(0));
+
+        // Add the y-axis, remove the domain line, add grid lines, and a label.
+        svg.append("g")
+            .attr("transform", `translate(${marginLeft},0)`)
+            .call(d3.axisLeft(y).ticks(height / 40))
+            .call(g => g.select(".domain").remove())
+            .call(g => g.selectAll(".tick line").clone()
+                .attr("x2", width - marginLeft - marginRight)
+                .attr("stroke-opacity", 0.1))
 
         function formatDate(date) {
             const month = String(date.getMonth() + 1).padStart(2, '0');
