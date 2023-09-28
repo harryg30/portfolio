@@ -27,7 +27,7 @@
     "next-env.d.ts",
     ".next/types/**/*.ts",
     "**/*.ts",
-    "**/*.tsx", "pages/db"  ],
+    "**/*.tsx", "pages/db", "app/bluebike/page.js"  ],
   "exclude": [
     "node_modules"
   ]

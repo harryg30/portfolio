@@ -23,7 +23,8 @@ export default function BlueBike(props) {
         <>
             <div className='container bluebike-page'>
                 <div className='text-zone'>
-                    <h1>BlueBike rider data</h1>
+                    <p>BlueBike Data Visualization</p>
+                    <p>Click on a station to see the top 3 destinations in black and top 3 origins in red or click the link in the pop up for more information</p>
                 </div>
                 <div>
                     {center != undefined ?

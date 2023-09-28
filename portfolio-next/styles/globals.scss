@@ -305,8 +305,8 @@ body {
   }
 
   p {
-    font-size: 13px;
-    color: #fff;
+    font-size: 14px;
+    color: #ff5100;
     font-family: sans-serif;
     font-weight: 300;
     max-width: fit-content;
@@ -349,17 +349,18 @@ body {
   .text-zone {
     position: absolute;
     left: 7%;
+    top: 0;
     vertical-align: top;
     max-height: 10%;
-
   }
 
   .map-wrap {
     position: absolute;
     background: rgba(8, 253, 216, 0.1);
-    margin-top: 60px;
+    margin-top: 65px;
     margin-left: 70px;
     margin-right: 10px;
+    margin-bottom: 100px;
     vertical-align: bottom;
     width: 95%;
     height: 95%;

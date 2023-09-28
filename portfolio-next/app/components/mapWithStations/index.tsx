@@ -103,7 +103,6 @@ const MapWithStations = (props) => {
   }
 
   return (
-    <div>
       <div>
         <Map
           className="map-wrap"
@@ -173,7 +172,6 @@ const MapWithStations = (props) => {
           )}
         </Map>
       </div>
-    </div>
   );
 };
 
