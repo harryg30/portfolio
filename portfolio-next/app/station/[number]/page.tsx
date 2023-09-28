@@ -55,11 +55,11 @@ export default function Page({ params }) {
                 <p>{station.name}</p>
             </div>
             <div className='chart-zone'>
-                <div className='grid-item'>
+                {/* <div className='grid-item'>
                     {station.latitude != undefined ?
                         <MapWithStations center={[station.latitude, station.longitude]} zoom={14}/>
                         : <></>}
-                </div>
+                </div> */}
                 <DeparturesByDay data={cleanRides(rides)} destinations={destinationsByDay(rides)} bikes={getBikeData(rides)} />
             </div>
         </div>
