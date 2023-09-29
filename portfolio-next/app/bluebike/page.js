@@ -22,10 +22,6 @@ export default function BlueBike(props) {
     return (
         <>
             <div className='container bluebike-page'>
-                <div className='text-zone'>
-                    <p>BlueBike Data Visualization</p>
-                    <p>Click on a station to see the top 3 destinations in black and top 3 origins in red or click the link in the pop up for more information</p>
-                </div>
                 <div>
                     {center != undefined ?
                         <MapWithStations center={center} zoom={zoom} props={props}/>

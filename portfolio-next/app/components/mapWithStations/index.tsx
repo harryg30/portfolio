@@ -15,8 +15,10 @@ const MapWithStations = (props) => {
   const [stations, setStations] = useState([]);
   const [ridesFromStation, setRidesFromStation] = useState([]);
   const [topDestinations, setTopDestinations] = useState([]);
+  const [showDestinations, setShowDestinations] = useState(true);
   const [ridesToStation, setRidesToStation] = useState([]);
   const [topOrigins, setTopOrigins] = useState([]);
+  const [showOrigins, setShowOrigins] = useState(true);
   const [selectedStation, setSelectedStation] = useState({
     id: -1,
     number: "undefined",
@@ -103,6 +105,33 @@ const MapWithStations = (props) => {
   }
 
   return (
+    <div>
+      <div className="text-zone">
+        <p>BlueBike Data Visualization</p>
+        <p>
+          <label className="switch">
+            {/* Show Top 3 Destinations (black) */}
+            <input
+              type="checkbox"
+              checked={showDestinations}
+              id={"showDestinations"}
+              onClick={() => setShowDestinations(!showDestinations)}
+            />
+            <span className="slider round"></span>
+          </label>{" "}
+          Show Top 3 Destinations (black)
+          <label className="switch">
+            <input
+              type="checkbox"
+              checked={showOrigins}
+              id={"showOrigins"}
+              onClick={() => setShowOrigins(!showOrigins)}
+            />
+            <span className="slider round"></span>
+          </label>{" "}
+          Show Top 3 Origins (red){" "}
+        </p>
+      </div>
       <div>
         <Map
           className="map-wrap"
@@ -138,7 +167,8 @@ const MapWithStations = (props) => {
                   </CircleMarker>
                 ))
               )}
-              {topDestinations.length === 0 ||
+              {showDestinations === false ||
+              topDestinations.length === 0 ||
               topDestinations === undefined ||
               selectedStation === undefined ? (
                 <></>
@@ -153,7 +183,8 @@ const MapWithStations = (props) => {
                   />
                 ))
               )}
-              {topOrigins.length === 0 ||
+              {showOrigins === false ||
+              topOrigins.length === 0 ||
               topOrigins === undefined ||
               selectedStation === undefined ? (
                 <></>
@@ -172,6 +203,7 @@ const MapWithStations = (props) => {
           )}
         </Map>
       </div>
+    </div>
   );
 };
 
@@ -184,9 +216,9 @@ function getTopStations(rides, topN, origin) {
 
   const stations = rides
     .map((ride) => {
-      if(origin){
+      if (origin) {
         return ride.startingStation[0].station.number as String;
-      }else {
+      } else {
         return ride.endingStation[0].station.number as String;
       }
     })
