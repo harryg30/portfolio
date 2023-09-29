@@ -1,20 +1,27 @@
-import checkEnvironment from '../../../components/checkEnv';
-import { Station } from '../../../pages/api/db'
-import Charts from './Charts';
+import checkEnvironment from "../../../components/checkEnv";
+import { Station } from "../../../pages/api/db";
+import Charts from "./Charts";
 
 export async function generateStaticParams() {
-    const stations = await fetch(checkEnvironment().concat('/api/getAllStations'), { method: 'GET' }).then((res) => res.json())
+  try {
+    const stations = await fetch(
+      checkEnvironment().concat("/api/getAllStations"),
+      { method: "GET" }
+    ).then((res) => res.json());
     return Array.from(stations).map((station: Station) => ({
-        number: station.number
-    }))
+      number: station.number,
+    }));
+  } catch (error) {
+    console.error(error);
+  }
 }
 
 export default function Page({ params }) {
-    const { number } = params
-   
-    return (
-        <div className="container station-page">
-           <Charts number={number}/>
-        </div>
-    )
+  const { number } = params;
+
+  return (
+    <div className="container station-page">
+      <Charts number={number} />
+    </div>
+  );
 }
