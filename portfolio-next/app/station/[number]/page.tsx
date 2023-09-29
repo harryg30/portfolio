@@ -1,4 +1,4 @@
-"use client";
+// "use client";
 import { useEffect, useState } from 'react';
 import checkEnvironment from '../../../components/checkEnv';
 import DeparturesByDay from './DeparturesByDay';
