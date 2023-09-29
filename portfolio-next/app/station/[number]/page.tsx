@@ -13,7 +13,7 @@ export async function generateStaticParams() {
     }));
   } catch (error) {
     console.error(error);
-    return "D32034"
+    return {number: "D32034"}
   }
 }
 
