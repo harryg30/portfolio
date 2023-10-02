@@ -22,6 +22,11 @@ export interface Station {
   deploymentYear: number;
 }
 
+export interface Bike {
+  id: number;
+  bikeId: number;
+}
+
 
 const prismaClientSingleton = () => {
   return new PrismaClient()

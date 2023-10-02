@@ -1,5 +1,4 @@
 "use client";
-
 import { useEffect, useState } from "react";
 import checkEnvironment from "../../../components/checkEnv";
 import { Ride, Station } from "../../../pages/api/db";
