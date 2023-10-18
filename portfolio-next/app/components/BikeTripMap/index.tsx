@@ -1,13 +1,15 @@
 'use client'
 import { useState, useEffect, useRef } from 'react'
 import React from 'react'
+import * as d3 from 'd3'
 import Map from '../Map/DynamicMap'
 import checkEnvironment from '../../../components/checkEnv'
-import { Ride } from '../../../pages/api/db'
+import { Ride, Station } from '../../../pages/api/db'
+import RoutingMachine from './routingMachine'
+
 
 export default function BikeTripMap(props) {
     const [rides, setRides] = useState([])
-
     useEffect(() => {
         fetch(
             checkEnvironment().concat('/api/ridesOnBike?bikeId=', props.bikeId),
@@ -38,9 +40,9 @@ export default function BikeTripMap(props) {
                         {rides === undefined || rides.length === 0 ? (
                             <></>
                         ) : (
-                            rides.map((o: Ride) => (
+                            rides.map((o: any) => (
                                 <div>
-                                    <Polyline
+                                    {/* <Polyline
                                         pathOptions={{ color: 'black' }}
                                         positions={[
                                             [
@@ -56,8 +58,22 @@ export default function BikeTripMap(props) {
                                                     .longitude,
                                             ],
                                         ]}
-                                    />
-
+                                    /> */}
+                                    <RoutingMachine start={
+                                            [
+                                                o.startingStation[0].station
+                                                    .latitude,
+                                                o.startingStation[0].station
+                                                    .longitude,
+                                            ]}
+                                            end={  [
+                                                o.endingStation[0].station
+                                                    .latitude,
+                                                o.endingStation[0].station
+                                                    .longitude,
+                                            ]}
+                                          
+                                        />
                                 </div>
                             ))
                         )}
