@@ -3,23 +3,23 @@ import 'leaflet-routing-machine'
 import { useMap } from 'react-leaflet'
 import { useEffect } from 'react'
 
-
 export default function RoutingMachine(props) {
     const map = useMap()
     useEffect(() => {
         if (!map) return
-
+        console.log(props.waypoints)
         const routingControl = L.Routing.control({
-            waypoints: [
-                L.latLng(props.start[0], props.start[1]),
-                L.latLng(props.end[0], props.end[1]),
-            ],
+            waypoints: props.waypoints,
             show: true,
+            profile: 'cycling',
             addWaypoints: false,
             routeWhileDragging: false,
             draggableWaypoints: false,
             fitSelectedRoutes: false,
             showAlternatives: false,
+            lineOptions: {
+                styles: [{color: 'green', opacity: 1, weight: 5}, {color: 'red', opacity: 1, weight: 1}]
+             }
         }).addTo(map)
 
         return () => map.removeControl(routingControl)
