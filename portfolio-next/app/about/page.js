@@ -7,7 +7,7 @@ export default function About() {
       <div className="container about-page">
         <div className="text-zone">
           <h1>
-            "Experience"
+            Experience
           </h1>
           <b align="LEFT">
             Full-stack Developer/Data Scientist | CIO Network Analytics | IBM | 2020 – 2023
