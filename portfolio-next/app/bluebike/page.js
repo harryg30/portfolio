@@ -22,9 +22,6 @@ export default function BlueBike(props) {
     return (
         <>
             <div className='container bluebike-page'>
-                <div className='text-zone'>
-                    <h1>BlueBike rider data</h1>
-                </div>
                 <div>
                     {center != undefined ?
                         <MapWithStations center={center} zoom={zoom} props={props}/>
