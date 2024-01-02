@@ -1,56 +1,67 @@
 "use client";
-import { useEffect, useState, useRef } from 'react'
-import React from 'react';
-import emailjs from '@emailjs/browser'
-import dynamic from 'next/dynamic';
-// import MapWithLocation from '../../app/MapWithLocation';
+import { useEffect, useState, useRef } from "react";
+import React from "react";
+import emailjs from "@emailjs/browser";
+import { useClickAway } from "@uidotdev/usehooks";
 
-const MapWithLocation = dynamic(
-  () => import('../components/MapWithLocation'),
-  {
-    ssr: false,
-    loading: () => (<div>loading...</div>),
-  }
-);
+function isValidEmail(email) {
+  // Regular expression for basic email validation
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailRegex.test(email);
+}
 
 export default function Contact(props) {
-  const [letterClass, setLetterClass] = useState('text-animate')
-  const form = useRef()
-
-  useEffect(() => {
-    setTimeout(() => {
-      setLetterClass('text-animate-hover')
-    }, 3000)
-  }, [])
+  const form = useRef();
 
   const sendEmail = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     if (window !== undefined) {
       emailjs
-        .sendForm('service_9f5y8yo', 'template_h1t0bcn', form.current, '18nGvNStKbg9lvjNH')
+        .sendForm(
+          "service_9f5y8yo",
+          "template_h1t0bcn",
+          form.current,
+          "18nGvNStKbg9lvjNH"
+        )
         .then(
           () => {
-            alert('Message successfully sent!')
-            window.location.reload(false)
+            alert("Message successfully sent!");
+            window.location.reload(false);
           },
           () => {
-            alert('Failed to send the message, please try again')
+            alert("Failed to send the message, please try again");
           }
-        )
+        );
     }
+  };
 
-  }
+  const sendMissedConnection = () => {
+    console.log("here");
+    console.log(form.current.email.value);
+    if (isValidEmail(form.current.email.value)) {
+      var templateParams = {
+        email: form.current.email.value,
+      };
+      console.log("sent?");
+      emailjs.send(
+        "service_9f5y8yo",
+        "template_vcfwduz",
+        templateParams,
+        "18nGvNStKbg9lvjNH"
+      );
+    }
+  };
 
   return (
     <>
       <div className="container contact-page">
         <div className="text-zone">
-          <h1>
-            Contact Me
-          </h1>
+          <h1>Contact Me</h1>
           <p>
-            I am interested in full time web development or data science positions in the Boston area. I am open to remote or contract work.
-            Feel free to reach out with any requests, questions, or just to say hello.
+            I am interested in full time web development or data science
+            positions in the Boston area. I am open to remote or contract work.
+            Feel free to reach out with any requests, questions, or just to say
+            hello.
           </p>
           <div className="contact-form">
             <form ref={form} onSubmit={sendEmail}>
@@ -97,7 +108,5 @@ export default function Contact(props) {
         </div> */}
       </div>
     </>
-  )
+  );
 }
-
-

@@ -1,24 +1,23 @@
 "use client";
-import '../styles/globals.scss'
-import Sidebar from '../components/Sidebar'
-
+import "../styles/globals.scss";
+import Sidebar from "../components/Sidebar";
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
   return (
     <html>
-    <body>
+      <body>
         <div className="App">
           <Sidebar />
-          <div className="page">
+          <div className="page" >
             <main>{children}</main>
+
           </div>
         </div>
-    </body>
+      </body>
     </html>
-  )
+  );
 }
-
