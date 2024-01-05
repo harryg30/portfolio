@@ -1,14 +1,18 @@
 import json
 import requests
 
-f = open("portfolio-next/assets/data/dec22rides.json")
 
-data = json.load(f)
+for d in ['01', '03', '04','05', '06', '07']:
+    print(d)
+    f = open("assets/data/"+d+"_23_rides.json")
 
-batchSize = 500
+    data = json.load(f)
 
-for i in range(0, len(data), batchSize):
-    batch = data[i:i+batchSize]
-    r = requests.post("http://localhost:3000/api/ride", json=batch)
-    print(r.json)
-    
+    batchSize = 500
+
+    for i in range(0, len(data), batchSize):
+        print(i)
+        batch = data[i:i+batchSize]
+        r = requests.post("http://localhost:3001/api/ride", json=batch)
+        print(r.json)
+        
