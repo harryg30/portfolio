@@ -5,6 +5,7 @@ import { api } from "~/trpc/server";
 import Collage from "./_components/collage";
 import About from "./_components/resume";
 import Experience from "./_components/experence";
+import Projects from "./_components/projects";
 
 export default async function Home() {
   const hello = await api.post.hello.query({ text: "from tRPC" });
@@ -20,15 +21,14 @@ export default async function Home() {
           <Bio />
         </div>
       </div>
-      <div className="flex flex-col items-center justify-center px-5 py-1">
+      <div className="flex flex-col items-center justify-center gap-2 px-5 py-1">
         <h1 className=" py-1 text-3xl">Experience</h1>
         <Experience />
       </div>
-      <div className="flex flex-col items-center justify-center">
+      <div className="flex flex-col items-center justify-center gap-2">
         <h1 className="text-3xl">Projects</h1>
         <div className="flex flex-row gap-5">
-          <p>BlueBike</p>
-          <p>Strava</p>
+          <Projects />
         </div>
       </div>
     </main>
