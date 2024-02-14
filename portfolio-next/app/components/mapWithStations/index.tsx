@@ -112,41 +112,6 @@ const MapWithStations = (props) => {
         <div>
             <div className="text-zone">
                 <p>BlueBike Data Visualization</p>
-                <p>
-                    <label className="switch">
-                        {/* Show Top 3 Destinations (black) */}
-                        <input
-                            type="checkbox"
-                            checked={showDestinations}
-                            id={'showDestinations'}
-                            onClick={() =>
-                                setShowDestinations(!showDestinations)
-                            }
-                        />
-                        <span className="slider round"></span>
-                    </label>{' '}
-                    Show Top 3 Destinations (black)
-                    <label className="switch">
-                        <input
-                            type="checkbox"
-                            checked={showOrigins}
-                            id={'showOrigins'}
-                            onClick={() => setShowOrigins(!showOrigins)}
-                        />
-                        <span className="slider round"></span>
-                    </label>{' '}
-                    Show Top 3 Origins (red){' '}
-                    <label className="switch">
-                        <input
-                            type="checkbox"
-                            checked={showPopUp}
-                            id={'enablePopUp'}
-                            onClick={() => setShowPopUp(!showPopUp)}
-                        />
-                        <span className="slider round"></span>
-                    </label>{' '}
-                    Enable PopUp{' '}
-                </p>
             </div>
             <div>
                 <Map
@@ -190,44 +155,6 @@ const MapWithStations = (props) => {
                                             <></>
                                         )}
                                     </CircleMarker>
-                                ))
-                            )}
-                            {showDestinations === false ||
-                            topDestinations.length === 0 ||
-                            topDestinations === undefined ||
-                            selectedStation === undefined ? (
-                                <></>
-                            ) : (
-                                topDestinations.map((o: Station) => (
-                                    <Polyline
-                                        pathOptions={{ color: 'black' }}
-                                        positions={[
-                                            [
-                                                selectedStation.latitude,
-                                                selectedStation.longitude,
-                                            ],
-                                            [o.latitude, o.longitude],
-                                        ]}
-                                    />
-                                ))
-                            )}
-                            {showOrigins === false ||
-                            topOrigins.length === 0 ||
-                            topOrigins === undefined ||
-                            selectedStation === undefined ? (
-                                <></>
-                            ) : (
-                                topOrigins.map((o: Station) => (
-                                    <Polyline
-                                        pathOptions={{ color: 'red' }}
-                                        positions={[
-                                            [
-                                                selectedStation.latitude,
-                                                selectedStation.longitude,
-                                            ],
-                                            [o.latitude, o.longitude],
-                                        ]}
-                                    />
                                 ))
                             )}
                         </>
