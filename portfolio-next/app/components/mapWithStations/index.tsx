@@ -4,7 +4,26 @@ import Map from '../Map/DynamicMap'
 import Link from 'next/link'
 import checkEnvironment from '../../../components/checkEnv'
 import { Ride, Station } from '../../../pages/api/db'
+import { gql, TypedDocumentNode } from '@apollo/client'
+import {
+    useQuery,
+    useSuspenseQuery,
+} from '@apollo/experimental-nextjs-app-support/ssr'
 
+const GET_STATIONS: TypedDocumentNode<Data, Station> = gql`
+    query GetAllStations @cached {
+        Station {
+            latitude
+            longitude
+            id
+            name
+            number
+        }
+    }
+`
+interface Data {
+    Station: Station
+}
 // Set default sizing to control aspect ratio which will scale responsively
 // but also help avoid layout shift
 
@@ -12,13 +31,12 @@ const DEFAULT_WIDTH = 600
 const DEFAULT_HEIGHT = 600
 
 const MapWithStations = (props) => {
-    const [stations, setStations] = useState([])
-    const [ridesFromStation, setRidesFromStation] = useState([])
-    const [topDestinations, setTopDestinations] = useState([])
-    const [showDestinations, setShowDestinations] = useState(true)
-    const [ridesToStation, setRidesToStation] = useState([])
-    const [topOrigins, setTopOrigins] = useState([])
-    const [showOrigins, setShowOrigins] = useState(true)
+    // const [ridesFromStation, setRidesFromStation] = useState([])
+    // const [topDestinations, setTopDestinations] = useState([])
+    // const [showDestinations, setShowDestinations] = useState(true)
+    // const [ridesToStation, setRidesToStation] = useState([])
+    // const [topOrigins, setTopOrigins] = useState([])
+    // const [showOrigins, setShowOrigins] = useState(true)
     const [showPopUp, setShowPopUp] = useState(true)
     const [selectedStation, setSelectedStation] = useState({
         id: -1,
@@ -32,78 +50,8 @@ const MapWithStations = (props) => {
         deploymentYear: 0,
     } as Station)
 
-    useEffect(() => {
-        fetch(checkEnvironment().concat('/api/getAllStations'), {
-            method: 'GET',
-        })
-            .then((resp) => resp.json())
-            .then((data) => setStations(data.stations))
-    }, [])
-
-    useEffect(() => {
-        if (selectedStation.id !== -1)
-            //get destinations
-            fetch(
-                checkEnvironment().concat(
-                    '/api/ridesFromStation?stationNo=',
-                    selectedStation.number,
-                ),
-                { method: 'GET' },
-            )
-                .then((resp) => resp.json())
-                .then((data) => setRidesFromStation(data.rides))
-        const destinationNumbers = getTopStations(ridesFromStation, 3, false)
-        let destinationsString = ''
-        for (const i in destinationNumbers) {
-            if (destinationsString == '') {
-                destinationsString += destinationNumbers[i]
-            } else {
-                destinationsString =
-                    destinationsString + ',' + destinationNumbers[i]
-            }
-        }
-
-        fetch(
-            checkEnvironment().concat(
-                '/api/getMultipleStations?stations=',
-                destinationsString,
-            ),
-            { method: 'GET' },
-        )
-            .then((resp) => resp.json())
-            .then((data) => setTopDestinations(data.station))
-
-        //now origins
-        fetch(
-            checkEnvironment().concat(
-                '/api/ridesToStation?stationNo=',
-                selectedStation.number,
-            ),
-            { method: 'GET' },
-        )
-            .then((resp) => resp.json())
-            .then((data) => setRidesToStation(data.rides))
-        const originNumbers = getTopStations(ridesToStation, 3, true)
-        let originsString = ''
-        for (const i in originNumbers) {
-            if (originsString == '') {
-                originsString += originNumbers[i]
-            } else {
-                originsString = originsString + ',' + originNumbers[i]
-            }
-        }
-
-        fetch(
-            checkEnvironment().concat(
-                '/api/getMultipleStations?stations=',
-                originsString,
-            ),
-            { method: 'GET' },
-        )
-            .then((resp) => resp.json())
-            .then((data) => setTopOrigins(data.station))
-    }, [selectedStation])
-
+    const { data } = useSuspenseQuery(GET_STATIONS)
+    const stations: Station | undefined = data.Station
     function handleMarkerClick(e) {
         setSelectedStation(e)
     }
@@ -127,7 +75,7 @@ const MapWithStations = (props) => {
                                 attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
                                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                             />
-                            {stations.length === 0 || stations === undefined ? (
+                            {stations === undefined ? (
                                 <></>
                             ) : (
                                 stations.map((o: Station) => (

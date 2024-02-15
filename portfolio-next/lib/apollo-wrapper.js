@@ -1,19 +1,24 @@
 'use client'
 
-import { ApolloClient, ApolloLink, HttpLink } from '@apollo/client'
+import { ApolloLink, HttpLink } from '@apollo/client'
 import {
     ApolloNextAppProvider,
     NextSSRInMemoryCache,
+    NextSSRApolloClient,
     SSRMultipartLink,
 } from '@apollo/experimental-nextjs-app-support/ssr'
 
 function makeClient() {
+    const key = process.env.HASURA_ACCESS_TOKEN
     const httpLink = new HttpLink({
-        // https://studio.apollographql.com/public/spacex-l4uc6p/
-        uri: 'https://main--spacex-l4uc6p.apollographos.net/graphql',
+        uri: 'https://honest-shark-99.hasura.app/v1/graphql',
+        headers: {
+            'Content-Type': 'application/json',
+            'x-hasura-access-key': `${process.env.HASURA_ACCESS_TOKEN}`,
+        },
     })
 
-    return new ApolloClient({
+    return new NextSSRApolloClient({
         cache: new NextSSRInMemoryCache(),
         link:
             typeof window === 'undefined'

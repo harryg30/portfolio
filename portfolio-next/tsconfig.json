@@ -27,7 +27,7 @@
     "next-env.d.ts",
     ".next/types/**/*.ts",
     "**/*.ts",
-    "**/*.tsx", "pages/db", "app/bluebike/page.js"  ],
+    "**/*.tsx", "pages/db", "app/bluebike/page.js", "app/apolloTest/index.js", "app/components/mapWithStations/index.js", "lib/apollo-wrapper.js"  ],
   "exclude": [
     "node_modules"
   ]
