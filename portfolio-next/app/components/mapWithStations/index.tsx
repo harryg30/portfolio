@@ -1,12 +1,11 @@
-import { Dispatch, SetStateAction, memo, useState } from 'react'
+import { memo } from 'react'
 import React from 'react'
 import Map from '../Map/DynamicMap'
 import Link from 'next/link'
 import { Station } from '../../../pages/api/db'
-import { gql, skipToken, TypedDocumentNode } from '@apollo/client'
+import { gql, TypedDocumentNode } from '@apollo/client'
 import { useSuspenseQuery } from '@apollo/experimental-nextjs-app-support/ssr'
-import StationCard from '../StationCard'
-import { DestinationsByMonth } from '@prisma/client'
+
 interface StationData {
     Station: Station
 }

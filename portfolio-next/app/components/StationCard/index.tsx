@@ -1,10 +1,7 @@
 import { Station } from '../../../pages/api/db'
-import { gql, skipToken, TypedDocumentNode } from '@apollo/client'
-import {
-    useSuspenseQuery,
-    useBackgroundQuery,
-} from '@apollo/experimental-nextjs-app-support/ssr'
-import { DestinationsByMonth } from '@prisma/client'
+import { gql, TypedDocumentNode } from '@apollo/client'
+import { useSuspenseQuery } from '@apollo/experimental-nextjs-app-support/ssr'
+import { DestinationsByMonth } from '../../../pages/api/db'
 
 interface Vars {
     stationNumber: String

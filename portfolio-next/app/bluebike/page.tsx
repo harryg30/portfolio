@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState, useRef, useCallback } from 'react'
+import { useState } from 'react'
 import React from 'react'
 import dynamic from 'next/dynamic'
 import StationCard from '../components/StationCard'

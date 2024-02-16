@@ -9,6 +9,14 @@ export interface Ride {
     startingStation: { station: Station }[]
     endingStation: { station: Station }[]
 }
+export interface DestinationsByMonth {
+    id: number
+    startStationNumber: string
+    endStationNumber: string
+    month: string
+    year: number
+    count: number
+}
 
 export interface Station {
     map(
