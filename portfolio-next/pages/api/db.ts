@@ -11,7 +11,9 @@ export interface Ride {
 }
 
 export interface Station {
-    map(arg0: (o: Station) => import('react').JSX.Element): unknown
+    map(
+        arg0: (o: Station) => import('react').JSX.Element,
+    ): unknown | null | undefined
     id: number
     number: string
     name: string
