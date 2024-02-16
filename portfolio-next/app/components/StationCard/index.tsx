@@ -40,12 +40,12 @@ interface propTypes {
 export default function StationCard(props: propTypes): JSX.Element {
     const number = props.station.number
     const { data } = useSuspenseQuery(GET_DESTINATIONS_BY_STATION, {
-        variables: { stationNumber: number, limit: 10 },
+        variables: { stationNumber: number, limit: 100 },
     })
 
     return (
         <>
-            <p>{data.DestinationsByMonth.id}</p>
+            <p>{data.DestinationsByMonth[0].count}</p>
         </>
     )
 }

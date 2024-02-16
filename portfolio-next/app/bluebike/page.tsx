@@ -13,7 +13,7 @@ const MapWithStations = dynamic(() => import('../components/mapWithStations'), {
 
 const DEFAULT_CENTER = [42.3342, -71.1041]
 
-export default function BlueBike({ station }): JSX.Element {
+export default function BlueBike(): JSX.Element {
     const center = DEFAULT_CENTER
     const zoom = 12
     const [selectedStation, setSelectedStation] = useState({
@@ -38,12 +38,11 @@ export default function BlueBike({ station }): JSX.Element {
                 <div>
                     <div className="text-zone">
                         <p>BlueBike Data Visualization</p>
-                        <p>{selectedStation.number}</p>
-                        {/* {selectedStation === undefined ? (
-                           
+                        {selectedStation.number === 'undefined' ? (
+                            <p>Select a station on the map</p>
                         ) : (
                             <StationCard station={selectedStation} />
-                        )} */}
+                        )}
                     </div>
                     {center != undefined ? (
                         <MapWithStations
