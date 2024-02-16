@@ -33,23 +33,23 @@ interface propTypes {
 const MapWithStations = memo(function MapWithStations(
     props: propTypes,
 ): JSX.Element {
-    const [selectedStation, setSelectedStation] = useState({
-        id: -1,
-        number: 'undefined',
-        name: 'undefined',
-        latitude: 0,
-        longitude: 0,
-        district: 'undefined',
-        public: false,
-        totalDocks: 0,
-        deploymentYear: 0,
-    } as Station)
+    // const [selectedStation, setSelectedStation] = useState({
+    //     id: -1,
+    //     number: 'undefined',
+    //     name: 'undefined',
+    //     latitude: 0,
+    //     longitude: 0,
+    //     district: 'undefined',
+    //     public: false,
+    //     totalDocks: 0,
+    //     deploymentYear: 0,
+    // } as Station)
 
     const { data: stationData } = useSuspenseQuery(GET_STATIONS)
     const stations: Station | undefined = stationData.Station
 
     function handleMarkerClick(e: Station) {
-        setSelectedStation(e)
+        props.setSelectedStation(e)
     }
 
     return (
