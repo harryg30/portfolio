@@ -49,6 +49,7 @@ export default function BlueBike(): JSX.Element {
                             center={center}
                             zoom={zoom}
                             setSelectedStation={handleMarkerClick}
+                            selectedStation={selectedStation}
                         />
                     ) : (
                         <></>

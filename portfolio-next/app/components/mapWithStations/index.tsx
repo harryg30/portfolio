@@ -1,4 +1,4 @@
-import { memo } from 'react'
+import { memo, useState } from 'react'
 import React from 'react'
 import Map from '../Map/DynamicMap'
 import Link from 'next/link'
@@ -25,34 +25,24 @@ const DEFAULT_HEIGHT = 600
 
 interface propTypes {
     setSelectedStation: Function
+    selectedStation: Station
     center: number[]
     zoom: number
 }
 
-const MapWithStations = memo(function MapWithStations(
-    props: propTypes,
-): JSX.Element {
-    // const [selectedStation, setSelectedStation] = useState({
-    //     id: -1,
-    //     number: 'undefined',
-    //     name: 'undefined',
-    //     latitude: 0,
-    //     longitude: 0,
-    //     district: 'undefined',
-    //     public: false,
-    //     totalDocks: 0,
-    //     deploymentYear: 0,
-    // } as Station)
-
+function MapWithStations(props: propTypes): JSX.Element {
     const { data: stationData } = useSuspenseQuery(GET_STATIONS)
     const stations: Station | undefined = stationData.Station
 
     function handleMarkerClick(e: Station) {
+        console.log('Before setSelectedStation:', props.selectedStation)
         props.setSelectedStation(e)
+        console.log('After setSelectedStation:', props.selectedStation)
     }
 
     return (
         <div>
+            <p>{props.selectedStation.number}</p>
             <Map
                 className="map-wrap"
                 center={props.center}
@@ -74,25 +64,33 @@ const MapWithStations = memo(function MapWithStations(
                                     center={[o.latitude, o.longitude]}
                                     key={o.id}
                                     radius={5}
+                                    color={'#0021b3'}
                                     eventHandlers={{
                                         click: (e) => {
                                             handleMarkerClick(o)
                                         },
                                     }}
-                                >
-                                    <Popup>
-                                        <Link href={'/station/' + o.number}>
-                                            {o.name}
-                                        </Link>
-                                    </Popup>
-                                </CircleMarker>
+                                />
                             ))
+                        )}
+                        {props.selectedStation === undefined ? (
+                            <></>
+                        ) : (
+                            <CircleMarker
+                                center={[
+                                    props.selectedStation.latitude,
+                                    props.selectedStation.longitude,
+                                ]}
+                                key={props.selectedStation.id}
+                                radius={5}
+                                color={'#ff5100'}
+                            />
                         )}
                     </>
                 )}
             </Map>
         </div>
     )
-})
+}
 
 export default MapWithStations

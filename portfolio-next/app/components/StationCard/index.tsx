@@ -42,7 +42,7 @@ export default function StationCard(props: propTypes): JSX.Element {
 
     return (
         <>
-            <p>{data.DestinationsByMonth[0].count}</p>
+            <p>{data.DestinationsByMonth[0].startStationNumber}</p>
         </>
     )
 }
