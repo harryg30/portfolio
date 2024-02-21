@@ -351,24 +351,33 @@ body {
 
     .text-zone {
         position: absolute;
-        left: 7%;
+        left: 5%;
         top: 0;
         vertical-align: top;
         max-height: 10%;
-    }
 
-    .map-wrap {
-        position: absolute;
-        background: rgba(8, 253, 216, 0.1);
-        margin-top: 65px;
-        margin-left: 70px;
-        margin-right: 10px;
-        margin-bottom: 100px;
-        vertical-align: bottom;
-        width: 95%;
-        height: 95%;
-    }
+        .grid-container {
+            display: grid;
+            height: 100%;
+            width: 100%;
+            grid-template-columns: 800px 560px;
+            grid-template-rows: 50px 630px;
+            gap: 1px; /* Adjust gap as needed */
+        }
 
+        .grid-item {
+            position: relative;
+            max-height: 750px;
+            padding: 10px;
+        }
+
+        .map-wrap {
+            position: absolute;
+            background: rgba(8, 253, 216, 0.1);
+            width: 780px;
+            height: 100%;
+        }
+    }
     /* The switch - the box around the slider */
     .switch {
         position: relative;

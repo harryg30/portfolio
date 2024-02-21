@@ -5,6 +5,8 @@ import React from 'react'
 import dynamic from 'next/dynamic'
 import StationCard from '../components/StationCard'
 import { Station } from '../../pages/api/db'
+import { Card } from 'antd'
+import YearCard from '../components/YearCard'
 
 const MapWithStations = dynamic(() => import('../components/mapWithStations'), {
     ssr: false,
@@ -35,25 +37,33 @@ export default function BlueBike(): JSX.Element {
     return (
         <>
             <div className="container bluebike-page">
-                <div>
-                    <div className="text-zone">
-                        <p>BlueBike Data Visualization</p>
-                        {selectedStation.number === 'undefined' ? (
-                            <p>Select a station on the map</p>
-                        ) : (
-                            <StationCard station={selectedStation} />
-                        )}
+                <div className="text-zone">
+                    <div className="grid-container">
+                        <div className="grid-item">
+                            <p>BlueBike Data Visualization</p>
+                        </div>
+                        <div className="grid-item"></div>
+                        <div className="grid-item">
+                            {center != undefined ? (
+                                <MapWithStations
+                                    center={center}
+                                    zoom={zoom}
+                                    setSelectedStation={handleMarkerClick}
+                                    selectedStation={selectedStation}
+                                />
+                            ) : (
+                                <></>
+                            )}
+                        </div>
+
+                        <div className="grid-item">
+                            {selectedStation.number === 'undefined' ? (
+                                <YearCard />
+                            ) : (
+                                <StationCard station={selectedStation} />
+                            )}
+                        </div>
                     </div>
-                    {center != undefined ? (
-                        <MapWithStations
-                            center={center}
-                            zoom={zoom}
-                            setSelectedStation={handleMarkerClick}
-                            selectedStation={selectedStation}
-                        />
-                    ) : (
-                        <></>
-                    )}
                 </div>
             </div>
         </>

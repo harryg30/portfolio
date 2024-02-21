@@ -35,14 +35,11 @@ function MapWithStations(props: propTypes): JSX.Element {
     const stations: Station | undefined = stationData.Station
 
     function handleMarkerClick(e: Station) {
-        console.log('Before setSelectedStation:', props.selectedStation)
         props.setSelectedStation(e)
-        console.log('After setSelectedStation:', props.selectedStation)
     }
 
     return (
         <div>
-            <p>{props.selectedStation.number}</p>
             <Map
                 className="map-wrap"
                 center={props.center}
