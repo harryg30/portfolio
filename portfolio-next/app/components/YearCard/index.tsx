@@ -10,65 +10,72 @@ interface Vars {
     limit: number
 }
 
+type destinations_by_station_pairs_view = {
+    [x: string]: any
+    total_count: Number
+    endStationNumber: string
+    startStationNumber: string
+}
+
 interface Data {
-    DestinationsByMonth: DestinationsByMonth
+    destinations_by_station_pairs_view: destinations_by_station_pairs_view
 }
 
 const GET_TOP_DESTINATIONS: TypedDocumentNode<Data, Vars> = gql`
     query GetTopDestinations($limit: Int!) {
-        DestinationsByMonth(order_by: { count: desc }, limit: $limit) {
-            value: count
-            target: endStationNumber
-            source: startStationNumber
+        destinations_by_station_pairs_view(
+            order_by: { total_count: desc }
+            limit: $limit
+        ) {
+            value: total_count
+            target: end_station_name
+            source: start_station_name
         }
     }
 `
 export default function YearCard(): JSX.Element {
     const { data } = useSuspenseQuery(GET_TOP_DESTINATIONS, {
-        variables: { limit: 1 },
+        variables: { limit: 10 }
     })
     type nodeType = {
         name: string
         category: string
     }
-    type scaleType = {}
 
     let nodes: nodeType[] = []
-    let scale = {}
     const bar_data: { value: Int16Array; key: string; group: string } | any =
-        data.DestinationsByMonth.map((row) => {
+        data.destinations_by_station_pairs_view.map((row) => {
             nodes.push({ name: row.source, category: 'Start Station' })
-            nodes.push({ name: row.target, category: 'End Station' })
-            scale[row.source] = getRandomRainbowColor()
-            scale[row.target] = getRandomRainbowColor()
+            nodes.push({ name: row.target + ' ', category: 'End Station' })
+            return {
+                value: row.value,
+                source: row.source,
+                target: row.target + ' '
+            }
         })
-    console.log(data)
-    console.log(nodes)
-    console.log(scale)
 
+    function onlyUnique(value, index, self) {
+        return self.findIndex((obj) => obj.name === value.name) === index
+    }
+    console.log(nodes.filter(onlyUnique))
     return (
         <>
-            <Card title={'2023 Top trips'}>
+            <Card title={'2023 Blue Bike Stats'}>
                 {bar_data === undefined || nodes === undefined ? (
                     <></>
                 ) : (
                     <AlluvialChart
                         data={bar_data}
                         options={{
-                            title: 'Alluvial (gradient)',
+                            title: 'Top ten trips (trip: unique start, end stations)',
                             alluvial: {
-                                nodes: nodes,
+                                nodes: nodes.filter(onlyUnique)
                             },
-                            height: '600px',
+                            height: '500px'
                         }}
                     />
                 )}
             </Card>
         </>
     )
-}
-function getRandomRainbowColor(): string {
-    const colors = ['red', 'orange', 'yellow', 'green', 'blue', 'purple']
-    const randomIndex = Math.floor(Math.random() * colors.length)
-    return colors[randomIndex]
 }
