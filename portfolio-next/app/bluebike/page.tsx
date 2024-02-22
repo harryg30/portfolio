@@ -112,9 +112,7 @@ export default function BlueBike(): JSX.Element {
                                 <MapWithStations
                                     center={center}
                                     zoom={zoom}
-                                    trips={
-                                        stationTripCount?.destinations_by_station_pairs_with_end_lat_lon_view
-                                    }
+                                    trips={trips}
                                     setSelectedStation={handleMarkerClick}
                                     selectedStation={selectedStation}
                                 />
