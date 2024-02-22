@@ -35,7 +35,7 @@ const GET_TOP_DESTINATIONS: TypedDocumentNode<Data, Vars> = gql`
 `
 export default function YearCard(): JSX.Element {
     const { data } = useSuspenseQuery(GET_TOP_DESTINATIONS, {
-        variables: { limit: 10 }
+        variables: { limit: 15 }
     })
     type nodeType = {
         name: string
@@ -57,7 +57,7 @@ export default function YearCard(): JSX.Element {
     function onlyUnique(value, index, self) {
         return self.findIndex((obj) => obj.name === value.name) === index
     }
-    console.log(nodes.filter(onlyUnique))
+
     return (
         <>
             <Card title={'2023 Blue Bike Stats'}>

@@ -10,6 +10,7 @@ export interface Ride {
     endingStation: { station: Station }[]
 }
 export interface DestinationsByMonth {
+    [x: string]: any
     id: number
     startStationNumber: string
     endStationNumber: string
@@ -19,8 +20,9 @@ export interface DestinationsByMonth {
 }
 
 export interface Station {
+    [x: string]: any
     map(
-        arg0: (o: Station) => import('react').JSX.Element,
+        arg0: (o: Station) => import('react').JSX.Element
     ): unknown | null | undefined
     id: number
     number: string

@@ -11,36 +11,28 @@ interface Vars {
     stationNumber: String
     limit: number
 }
-
 interface Data {
-    DestinationsByMonth: DestinationsByMonth
+    destinations_by_month_with_stations: destinations_by_month_with_stations
 }
-
+type destinations_by_month_with_stations = {
+    [x: string]: any
+    total_count: Number
+    endStationNumber: string
+    startStationNumber: string
+}
 const GET_DESTINATIONS_BY_STATION: TypedDocumentNode<Data, Vars> = gql`
     query GetDestinationsByStation($stationNumber: String!, $limit: Int!) {
-        DestinationsByMonth(
+        destinations_by_month_with_stations(
             order_by: { count: desc }
             limit: $limit
             where: { startStationNumber: { _eq: $stationNumber } }
         ) {
             value: count
-            key: endStationNumber
+            key: end_station_name
             group: month
         }
     }
 `
-// const documentTransform = new DocumentTransform((document) => {
-//     const transformedDocument = visit(document, {
-//         Field(field) {
-//             if (field.name.value !== 'currentUser') {
-//                 return
-//             }
-//             return { ...field }
-//         },
-//     })
-
-//     return transformedDocument
-// })
 interface propTypes {
     station: Station
 }
@@ -48,15 +40,15 @@ interface propTypes {
 export default function StationCard(props: propTypes): JSX.Element {
     const number = props.station.number
     const { data } = useSuspenseQuery(GET_DESTINATIONS_BY_STATION, {
-        variables: { stationNumber: number, limit: 100 },
+        variables: { stationNumber: number, limit: 100 }
     })
 
     const bar_data: { value: Int16Array; key: string; group: string } | any =
-        data.DestinationsByMonth.map((row) => {
+        data.destinations_by_month_with_stations.map((row) => {
             return {
                 value: row.value,
                 key: row.key,
-                group: toMonthName(row.group),
+                group: toMonthName(row.group)
             }
         })
 
@@ -73,14 +65,14 @@ export default function StationCard(props: propTypes): JSX.Element {
                             axes: {
                                 left: {
                                     mapsTo: 'value',
-                                    stacked: true,
+                                    stacked: true
                                 },
                                 bottom: {
                                     mapsTo: 'key',
-                                    scaleType: 'labels' as ScaleTypes,
-                                },
+                                    scaleType: 'labels' as ScaleTypes
+                                }
                             },
-                            height: '300px',
+                            height: '500px'
                         }}
                     />
                 )}
@@ -105,7 +97,7 @@ function toMonthName(monthNumberString: string) {
         'September',
         'October',
         'November',
-        'December',
+        'December'
     ]
 
     // Return the corresponding month name
