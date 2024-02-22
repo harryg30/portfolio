@@ -71,7 +71,7 @@ export default function YearCard(): JSX.Element {
                             alluvial: {
                                 nodes: nodes.filter(onlyUnique)
                             },
-                            height: '500px'
+                            height: '700px'
                         }}
                     />
                 )}

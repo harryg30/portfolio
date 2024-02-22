@@ -72,7 +72,7 @@ export default function StationCard(props: propTypes): JSX.Element {
                                     scaleType: 'labels' as ScaleTypes
                                 }
                             },
-                            height: '500px'
+                            height: '700px'
                         }}
                     />
                 )}

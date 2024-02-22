@@ -360,8 +360,8 @@ body {
             display: grid;
             height: 100%;
             width: 100%;
-            grid-template-columns: 800px 560px;
-            grid-template-rows: 50px 630px;
+            grid-template-columns: 1100px 700px;
+            grid-template-rows: 50px 1000px;
             gap: 1px; /* Adjust gap as needed */
         }
 
@@ -374,7 +374,7 @@ body {
         .map-wrap {
             position: absolute;
             background: rgba(8, 253, 216, 0.1);
-            width: 780px;
+            width: 1050px;
             height: 100%;
         }
     }

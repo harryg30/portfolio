@@ -30,7 +30,7 @@ const GET_STATIONS: TypedDocumentNode<StationData, Station> = gql`
 `
 
 const DEFAULT_WIDTH = 600
-const DEFAULT_HEIGHT = 600
+const DEFAULT_HEIGHT = 250
 
 interface propTypes {
     setSelectedStation: Function
@@ -48,11 +48,9 @@ function MapWithStations(props: propTypes): JSX.Element {
         props.setSelectedStation(e)
     }
     function handleMarkerClickHeat(e: string) {
-        console.log(e)
         const station = stationData.Station.filter(
             (s: Station) => s.number === e
         )
-        console.log(station[0])
         props.setSelectedStation(station[0])
     }
 
@@ -70,6 +68,10 @@ function MapWithStations(props: propTypes): JSX.Element {
 
     return (
         <div>
+            <p>
+                key: Red {'>'} 25 Trips, Orange{'>'} 10 Trips, Yellow
+                {'>'} 1 Trips, White = 1 trip
+            </p>
             <Map
                 className="map-wrap"
                 center={props.center}
