@@ -280,12 +280,32 @@ body {
         vertical-align: middle;
         display: table-cell;
         max-height: 90%;
-        max-width: 30%;
     }
 
     .text-animate-hover {
         &:hover {
             color: #fff;
+        }
+    }
+
+    .flat-button {
+        color: #ff5100;
+        font-size: 13px;
+        font-weight: 400;
+        letter-spacing: 4px;
+        font-family: sans-serif;
+        text-decoration: none;
+        padding: 10px 18px;
+        border: 1px solid #ff5100;
+        margin-top: 25px;
+        margin-right: 5px;
+        float: left;
+        animation: fadeInAnimation 1s 1.8s backwards;
+        white-space: nowrap;
+
+        &:hover {
+            background: #ff5100;
+            color: #333;
         }
     }
 }
