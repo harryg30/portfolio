@@ -13,6 +13,9 @@ export default function Home() {
                 <div className="text-zone">
                     <h1>Hi, I'm Harry</h1>
                     <h2>Full Stack Developer / Data Scientist / Cyclist</h2>
+                    <Link href="/contact" className="flat-button">
+                        Contact Me
+                    </Link>
                     <Link href="/bluebike" className="flat-button">
                         Example Data Visualization
                     </Link>

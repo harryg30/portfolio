@@ -86,7 +86,7 @@ export default function Sidebar() {
                 <Link
                     activeclassname="active"
                     className="contact-link"
-                    href="https://discord.gg/uqfASaVkVD"
+                    href="/contact"
                     onClick={() => setShowNav(false)}
                 >
                     <svg
